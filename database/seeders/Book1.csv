@@ -1,0 +1,7 @@
+﻿id,invoice_code,product_code,product_name,quantity_product,price_product
+1,IV-001,SP-001,Gạch lát nền AL-001,50,30 000
+2,,SP-001,Gạch lát nền AL-001,20,30 000
+3,,SP-001,Gạch lát nền AL-001,30,30 000
+4,,SP-001,Gạch lát nền AL-001,40,30 000
+5,,SP-001,Gạch lát nền AL-001,50,30 000
+6,,SP-001,Gạch lát nền AL-001,25,30 000

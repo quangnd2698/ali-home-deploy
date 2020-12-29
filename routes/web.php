@@ -38,7 +38,7 @@ Route::middleware('adminLogin')->prefix('admin')->group(function () {
         return view('admin/layout/index');
     });
     Route::get('logout','LoginController@logout')->name('logout');
-    
+
     // Route::post('login', 'AdminController@adminLogin');
     Route::resource('admins', 'AdminController');
     Route::post('admins/delete_more', 'AdminController@deleteMore')->name('admins.delete_more')->middleware('can:isAdmin');

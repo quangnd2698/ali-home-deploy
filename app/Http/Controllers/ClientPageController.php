@@ -134,7 +134,7 @@ class ClientPageController extends Controller
 
     public function checkoutSuccess(Request $request)
     {
-        // return view('client/checkout_success');
+        return view('client/checkout_success');
     }
 
     public function getSignUp(Request $request)

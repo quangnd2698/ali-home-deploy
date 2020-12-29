@@ -73,7 +73,7 @@ class OrderController extends Controller
             return redirect()->route('client.checkouts')->withErrors($errors);
         }
 
-        return view('client/checkout_success');
+        return redirect()->route('client.checkout_success');
     }
 
     /**

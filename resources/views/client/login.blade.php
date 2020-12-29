@@ -7,13 +7,14 @@
 <!--reference site : starttemplate.com-->
 <!DOCTYPE html>
 <html lang="en">
+    <link rel="icon" type="image/png" sizes="32x32" href="client/img/favicon.png">
 <head>
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
     <meta name="keywords"
           content="unique login form,leamug login form,boostrap login form,responsive login form,free css html login form,download login form">
     <meta name="author" content="leamug">
-    <title>Unique Login Form | Bootstrap Templates</title>
+    <title>Đăng nhập</title>
     <link href="css/style.css" rel="stylesheet" id="style">
     <!-- Bootstrap core Library -->
     <link href="//netdna.bootstrapcdn.com/bootstrap/3.2.0/css/bootstrap.min.css" rel="stylesheet" id="bootstrap-css">

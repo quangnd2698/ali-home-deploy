@@ -25,9 +25,7 @@ Route::get('/', function () {
 Route::get('403', function () {
     return view('admin/errors/403');
 })->name('403');
-// Route::get('/', function () {
-//     return view('welcome');
-// });
+
 Route::get('admin/login', function(){
     return view('auth/login');
 })->name('login');
@@ -72,7 +70,7 @@ Route::get('promotion','ClientPageController@getPromotion')->name('users.promoti
 Route::post('sign_up','UserController@store')->name('users.sign_up.create');
 Route::get('checkouts','ClientPageController@getCheckout')->name('client.checkouts');
 Route::Post('checkouts/create','OrderController@store')->name('client.checkouts.create');
-Route::get('checkouts/success','ClientPageController@checkoutSuccess')->name('client.checkouts.success');
+Route::get('checkouts/success','ClientPageController@checkoutSuccess')->name('client.checkout_success');
 
 Route::post('users_sign_in', 'LoginController@userAuthenticate')->name('users.sign_in');
 Route::get('user_logout','LoginController@userlogout')->name('users.logout');
@@ -81,9 +79,7 @@ Route::get('contact','ClientPageController@getMail')->name('users.contact.index'
 Route::post('contact', 'ClientPageController@storeMail')->name('users.contact');
 Route::get('profile/{id}','ClientPageController@getProfile')->name('users.profile');
 Route::post('profile/edit/{id}','UserController@update')->name('users.profile.update');
-// Route::post('tests', function() {
-//     dd(1);
-// })->name('users.sign_in');
+
 Route::get('ajax/districts/{id}', 'AjaxController@getDistricts');
 Route::get('ajax/wards/{id}', 'AjaxController@getWards');
 Route::get('ajax/comment', 'AjaxController@storeComment');
@@ -93,11 +89,7 @@ Route::get('ajax/product_models/create', 'AjaxController@storeProductModel');
 Route::get('ajax/brands/create', 'AjaxController@storeBrand');
 Route::get('ajax/changeStatus', 'AjaxController@changeStatus');
 Route::get('ajax/changeOrderStatus', 'AjaxController@changeOrderStatus');
-// Route::get('/', 'ChatsController@index');
-// Route::get('messages', function ()
-// {ajax/product_models/create
-//     return view('chat');
-// });
+
 Route::get('sender', function ()
 {
     return view('sender');
@@ -110,4 +102,3 @@ Route::post('sender', function (Request $request)
     // dd($text);
     event(new MessageSent($text));
 });
-// Route::post('messages', 'ChatsController@sendMessage');

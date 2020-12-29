@@ -26,14 +26,14 @@
                         </div>
                     @endif
 
-                    <ul class="social-custom list-inline">
-                        <li class="list-inline-item"><a href="#"><i class="fa fa-facebook"></i></a></li>
+                    {{-- <ul class="social-custom list-inline">
+                        <li class="list-inline-item"><a href="#"><i class="fa fa-facebook"></i></a></li> --}}
                         {{-- <li class="list-inline-item"><a href="#"><i
                                     class="fa fa-google-plus"></i></a></li>
                         <li class="list-inline-item"><a href="#"><i class="fa fa-twitter"></i></a></li>
                         <li class="list-inline-item"><a href="#"><i class="fa fa-envelope"></i></a></li>
                         --}}
-                    </ul>
+                    {{-- </ul> --}}
                     {{-- <ul class="list-inline contact-info d-block d-md-none">
                         <li class="list-inline-item"><a href="#"><i class="fa fa-2x fa-cart-plus"></i></a></li>
                     </ul> --}}

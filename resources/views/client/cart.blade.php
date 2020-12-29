@@ -12,7 +12,7 @@
 @endsection
 @section('content')
     {{-- <div style="background-color: #EEEEEE"> --}}
-        <div id="heading-breadcrumbs" style="height: 50px; padding: 5px">
+        <div id="heading-breadcrumbs" style="height: 50px; padding: 5px;">
             <div class="container" style="height: 50px">
                 <div class="row d-flex align-items-center flex-wrap">
                     <div class="col-md-8" >
@@ -27,7 +27,7 @@
                 </div>
             </div>
         </div>
-        <div id="content">
+        <div id="content" style=" min-height: 600px">
             <div class="container">
                 <div class="row bar">
                     {{-- <div class="col-lg-12">

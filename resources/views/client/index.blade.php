@@ -30,15 +30,8 @@
     <link rel="stylesheet" href="client/css/custom.css">
     @yield('style')
     <!-- Favicon and apple touch icons-->
-    <link rel="shortcut icon" href="client/img/favicon.png" type="image/x-icon">
-    <link rel="apple-touch-icon" href="client/img/apple-touch-icon.png">
-    <link rel="apple-touch-icon" sizes="57x57" href="client/img/apple-touch-icon-57x57.png">
-    <link rel="apple-touch-icon" sizes="72x72" href="client/img/apple-touch-icon-72x72.png">
-    <link rel="apple-touch-icon" sizes="76x76" href="client/img/apple-touch-icon-76x76.png">
-    <link rel="apple-touch-icon" sizes="114x114" href="client/img/apple-touch-icon-114x114.png">
-    <link rel="apple-touch-icon" sizes="120x120" href="client/img/apple-touch-icon-120x120.png">
-    <link rel="apple-touch-icon" sizes="144x144" href="client/img/apple-touch-icon-144x144.png">
-    <link rel="apple-touch-icon" sizes="152x152" href="client/img/apple-touch-icon-152x152.png">
+    {{-- <link rel="shortcut icon" href="img/favicon.png" type="image/x-icon"> --}}
+    <link rel="icon" type="image/png" sizes="32x32" href="client/img/favicon.png">
     <!-- Tweaks for older IEs-->
     <!--[if lt IE 9]>
         <script src="client/https://oss.maxcdn.com/html5shiv/3.7.3/html5shiv.min.js"></script>
@@ -90,8 +83,8 @@
     <script src="src/jquery.cookie.js"></script>
     <script>
 
-        $.cookie("cart_product", { expires: 7, path: '/' });
-        $.cookie("count_product", { expires: 7, path: '/' });
+        $.cookie("cart_product", ,{ expires: 7, path: '/' });
+        $.cookie("count_product", ,{ expires: 7, path: '/' });
 
     </script>
     <script>

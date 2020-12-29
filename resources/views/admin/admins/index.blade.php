@@ -95,12 +95,14 @@
                                         </div>
                                     @endcan
                                     @can('isAdmin')
-                                        <div class="col-4">
-                                            <a data-toggle="modal" data-target="#confirmation-modal-{{ $admin->id }}"
-                                                style="padding: 0px 5px 0px 5px" class="btn btn-danger">
-                                                <i class="dw dw-delete-3"></i>
-                                            </a>
-                                        </div>
+                                    @if ($admin->permission !== 1)
+                                    <div class="col-4">
+                                        <a data-toggle="modal" data-target="#confirmation-modal-{{ $admin->id }}"
+                                            style="padding: 0px 5px 0px 5px" class="btn btn-danger">
+                                            <i class="dw dw-delete-3"></i>
+                                        </a>
+                                    </div>
+                                    @endif
                                     @endcan
                                 </td>
                             </tr>

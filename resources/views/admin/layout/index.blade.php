@@ -51,7 +51,7 @@
     <div class="mobile-menu-overlay"></div>
 
     <div class="main-container" id="main">
-        <button onclick="playAudio()" >clcik</button>
+        <button onclick="playAudio()" hidden >clcik</button>
         <div class="pd-ltr-20 xs-pd-20-10" style="padding-top: 0px">
             <div class="min-height-200px">
                 @yield('content')

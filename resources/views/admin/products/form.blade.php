@@ -69,7 +69,7 @@
                     <label>Nhà sản xuất <span style="color: red; font-size: 20px">*</span></label>
                     <div class="row col-12">
                         <select class="custom-select form-control col-11" name="producer" id="product_type">
-                            <option @if(isset($product) && isset($product->producer)) {{'selected'}} @endif value="">{{$product->producer}}</option>
+                            {{-- <option @if(isset($product) && isset($product->producer)) {{'selected'}} @endif value="">{{$product->producer}}</option> --}}
                             @foreach ($brands as $brand)
                             <option value="{{$brand->brand_name}}" @if(isset($product) && $product->producer == $brand->brand_name) {{'selected'}} @endif>{{$brand->brand_name}}</option>
                             @endforeach

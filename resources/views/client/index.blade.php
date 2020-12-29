@@ -90,8 +90,8 @@
     <script src="src/jquery.cookie.js"></script>
     <script>
 
-        $.cookie("cart_product", ,{ expires: 7, path: '/' });
-        $.cookie("count_product", ,{ expires: 7, path: '/' });
+        $.cookie("cart_product", { expires: 7, path: '/' });
+        $.cookie("count_product", { expires: 7, path: '/' });
 
     </script>
     <script>

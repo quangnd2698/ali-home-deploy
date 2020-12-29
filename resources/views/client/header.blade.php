@@ -90,10 +90,10 @@
     <div id="navbar" role="navigation" class="navbar navbar-expand-lg" style="background: linear-gradient(to left, #EEC900, #FFFFFF)">
         <div class="container">
             <a href="index.html" class="navbar-brand home"><img src="vendors/images/ali-logo.png" style="object-fit: cover; height: 50px;"
-                    alt="Universal logo" class="d-none d-md-inline-block"><img src="img/logo-small.png"
-                    alt="Universal logo" class="d-inline-block d-md-none"><span class="sr-only">Universal - go to
+                    alt="Universal logo" class="d-none d-md-inline-block"><img src="vendors/images/ali-logo.png"
+                    style="object-fit: cover; height: 50px;" alt="Universal logo" class="d-inline-block d-md-none"><span class="sr-only">Universal - go to
                     homepage</span></a>
-            <div id="search" class=" clearfix" style="margin-top: 15px; height: 55px;width: 400px;">
+            <div id="search" class=" clearfix navbar-collapse collapse" style="margin-top: 15px; height: 55px;width: 400px;">
                 <div class="flex-center position-ref full-height col-10" style="width: 350px">
                     <div class="content col-12" style="width: 350px">
                         <form class=" col-12" role="search" style="width: 350px;">

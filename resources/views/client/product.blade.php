@@ -169,11 +169,9 @@
                                 </select>
                             </div>
                             <div class="col-3">
-                                <nav aria-label="Page navigation example">
-                                    <ul class="pagination" style="margin-top: 5px">
-                                        {{ $products->links() }}
-                                    </ul>
-                                </nav>
+                                <ul style="margin-top: 5px">
+                                    {{ $products->links() }}
+                                </ul>
                             </div>
                         </div>
 
@@ -197,11 +195,6 @@
                                             </p>
                                         </div>
                                     </div>
-                                    {{-- <p style="margin-top: 0%; color: #FF9900">
-                                        <?= //$product->display_star ?>
-                                        <span><small style="font-size: 10px; color: #333333"> {{$product->count_evaluate}} đánh giá</small></span>
-                                    </p> --}}
-                                    
                                     <hr>
                                     <div class="ribbon-holder">
                                         <div class="ribbon new" style="text-align: left;width: 40px;"><small style="margin-left: 5px">NEW</small></div>
@@ -211,12 +204,10 @@
                             </div>
                         @endforeach
                     </div>
-                    <div class="pages">
-                        <nav aria-label="Page navigation example" class="d-flex justify-content-center">
-                            <ul class="pagination">
-                                {{ $products->links() }}
-                            </ul>
-                        </nav>
+                    <div class="pages" style="margin-left: 40%">
+                        <ul >
+                            {{ $products->links() }}
+                        </ul>
                     </div>
                 </div>
             </div>

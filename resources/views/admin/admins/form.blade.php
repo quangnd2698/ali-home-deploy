@@ -108,6 +108,7 @@
     <div class="col-sm-12 col-md-8">
         <select class="custom-select form-control" name="permission">
             <option value="">Chọn loại nhân viên</option>
+            @if(isset($admin) && $admin->permission === 1) <option value="1" selected>Chủ cửa hàng</option> @endif
             <option value="2" @if(isset($admin) && $admin->permission == 2) {{'selected'}} @endif>Nhân viên bán hàng</option>
             <option value="3" @if(isset($admin) && $admin->permission == 3) {{'selected'}} @endif>Nhân viên kho</option>
             <option value="4" @if(isset($admin) && $admin->permission == 4) {{'selected'}} @endif>Nhân viên thị trường</option>
@@ -159,8 +160,4 @@
 <br>
 <div class="row justify-content-md-center col-sm-12">
     <input style class="col-sm-12 col-md-2 btn btn-primary" type="submit" value="Lưu" id="submit">
-    <button class="col-sm-2 btn btn-info" style="margin-left: 40px" >
-        <i class="icon-copy ion-refresh"></i>
-        Reset
-    </button>
 </div>

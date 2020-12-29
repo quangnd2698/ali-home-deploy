@@ -169,9 +169,11 @@
                                 </select>
                             </div>
                             <div class="col-3">
-                                <ul style="margin-top: 5px">
-                                    {{ $products->links() }}
-                                </ul>
+                                <nav aria-label="Page navigation example">
+                                    <ul class="pagination" style="margin-top: 5px">
+                                        {{ $products->links("pagination::bootstrap-4") }}
+                                    </ul>
+                                </nav>
                             </div>
                         </div>
 
@@ -206,7 +208,7 @@
                     </div>
                     <div class="pages" style="margin-left: 40%">
                         <ul >
-                            {{ $products->links() }}
+                            {{ $products->links("pagination::bootstrap-4") }}
                         </ul>
                     </div>
                 </div>

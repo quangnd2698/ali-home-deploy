@@ -14,7 +14,7 @@
     <!-- Font Awesome CSS-->
     <link rel="stylesheet" href="client/vendor/font-awesome/css/font-awesome.min.css">
     <!-- Google fonts - Roboto-->
-    <link rel="stylesheet" href="client/https://fonts.googleapis.com/css?family=Roboto:300,400,700">
+    {{-- <link rel="stylesheet" href="client/https://fonts.googleapis.com/css?family=Roboto:300,400,700"> --}}
     <!-- Bootstrap Select-->
     <link rel="stylesheet" href="client/vendor/bootstrap-select/css/bootstrap-select.min.css">
     <!-- owl carousel-->

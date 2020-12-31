@@ -77,7 +77,7 @@
 {{-- style="background: linear-gradient(to bottom left, #FF0033, #000000)" --}}>
     <div class="brand-logo" style="height: 130px">
         {{-- <br> --}}
-        <a href="index.html">
+        <a href="{{route('home')}}">
             {{-- <img src="vendors/images/deskapp-logo.svg" alt="" class="dark-logo"> --}}
             <img src="vendors/images/logo2.png" style="object-fit: cover; height: 120px; margin-left: 15%" alt="" class="light-logo">
         </a>

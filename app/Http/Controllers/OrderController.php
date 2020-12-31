@@ -119,8 +119,10 @@ class OrderController extends Controller
     public function destroy($id)
     {
         $order = Order::findOrFail($id);
-        $order->orderDetail->each(function ($item, $key) {
-            $item->delete();
+        $order->orderDetail->each(function ($orderDetail, $key) {
+            $orderDetail->delete();
+            $orderDetail->product->quantity = $orderDetail->product->quantity + $orderDetail->quantity_product;
+                $orderDetail->product->save();
         });
         $order->delete();
         alert()->success('xóa đơn hàng', 'thành công');

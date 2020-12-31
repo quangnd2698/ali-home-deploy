@@ -60,8 +60,9 @@ class OrderService implements OrderServiceInterface
                     $data['quantity_product'] = $_COOKIE['count_product-' . $product->id];
                     $data['price_product'] = $product->sale_price;
                     $data['total_price'] = $product->sale_price *  $data['quantity_product'];
-                    // dd(1);
-                    OrderDetail::create($data);
+                    $orderDetail = OrderDetail::create($data);
+                    $orderDetail->product->quantity = $orderDetail->product->quantity - $data['quantity_product'];
+                    $orderDetail->product->save();
                 }
             } catch (Exception $e) {
                 \DB::rollBack();
@@ -74,10 +75,7 @@ class OrderService implements OrderServiceInterface
         $notification['name'] = $params['customer_name'];
         $notification['created_at'] = date_format($order->created_at,"Y/m/d H:i:s");
         $notification['cost'] = number_format($order->cost, 0, ',', ' ');
-        // dd($notification);
-        // $notification['created_at'] = $order->created_at;
         event(new MessageSent($notification));
-        // dd(1);
         return [true, ''];
     }
 }

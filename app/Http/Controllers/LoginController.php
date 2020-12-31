@@ -18,7 +18,7 @@ class LoginController extends Controller
 
             switch (Auth::guard('admins')->user()->permission) {
                 case 1:
-                    return redirect()->route('admins.index');
+                    return redirect()->route('home');
                 break;
                 case 2:
                     return redirect()->route('invoices.create');

@@ -197,18 +197,21 @@
                                                     <li data-target="#carouselExampleIndicators" data-slide-to="2"></li>
                                                 </ol>
                                                 <div class="carousel-inner">
+
+                                                    @if (!$product->images->first())
                                                     <div class="carousel-item active">
-                                                        <img style="height: 200px;" class="d-block w-100" @if($product->images->first()) src="images/products/{{$product->images->first()->name}}" @else src="images/products/product1.jpg" @endif
-                                                            alt="First slide">
+                                                        <img style="height: 200px;" class="d-block w-100" src="images/products/no-image.jpg"
+                                                            alt="0-slide">
                                                     </div>
-                                                    <div class="carousel-item">
-                                                        <img class="d-block w-100" src="vendors/images/img4.jpg"
-                                                            alt="Second slide">
-                                                    </div>
-                                                    <div class="carousel-item">
-                                                        <img class="d-block w-100" src="vendors/images/img5.jpg"
-                                                            alt="Third slide">
-                                                    </div>
+                                                    @else
+                                                        @foreach ($product->images as $key => $image)
+                                                        <div class="carousel-item @if ($key == 0) {{'active'}} @endif">
+                                                            <img style="height: 200px;" class="d-block w-100" src="images/products/{{$image->name}}"
+                                                                alt="{{$key}}-slide">
+                                                        </div>
+                                                        @endforeach
+                                                    @endif
+                                                    
                                                 </div>
                                                 <a class="carousel-control-prev" href="#carouselExampleIndicators"
                                                     role="button" data-slide="prev">
@@ -222,18 +225,17 @@
                                                 </a>
                                             </div>
                                             <div class="mt-3 row">
-                                                <div class="col">
-                                                    <img style="height: 55px" class="d-block w-100" @if($product->images->first()) src="images/products/{{$product->images->first()->name}}" @else src="images/products/product1.jpg" @endif
-                                                        alt="First slide">
-                                                </div>
-                                                <div class="col">
-                                                    <img class="d-block w-100" src="vendors/images/img4.jpg"
-                                                        alt="Second slide">
-                                                </div>
-                                                <div class="col">
-                                                    <img class="d-block w-100" src="vendors/images/img5.jpg"
-                                                        alt="Third slide">
-                                                </div>
+                                                @if ($product->images->first() == null)
+                                                    <div class="col-3">
+                                                        <img style="height: 55px" class="d-block w-100" style="max-width: 50px;" src="images/products/no-image.jpg" alt="0-slide">
+                                                    </div>
+                                                    @else
+                                                        @foreach ($product->images as $key => $image)
+                                                        <div class="col-3">
+                                                        <img style="height: 55px" class="d-block w-100" src="images/products/{{$image->name}}" alt="{{$key}}-slide">
+                                                    </div>
+                                                        @endforeach
+                                                    @endif
                                             </div>
                                         </div>
                                         <div class="col-md-8 row">
@@ -380,14 +382,14 @@
                                             </div>
                                         </div>
 
-                                        <div class="col-md-2">
+                                        {{-- <div class="col-md-2">
                                             <div class="row">
                                                 <div class="col-sm-12 text-secondary">
 
                                                     <div class="col-xl-12">
                                                         <div class="progress-box text-center">
                                                             <input type="text" class="knob dial5"
-                                                                {{-- value="{{ ROUND(($product->number_error / $product->quantity) * 100, 2) }}" --}}
+                                                                value="{{ ROUND(($product->number_error / $product->quantity) * 100, 2) }}"
                                                                 data-width="70" data-height="70" data-thickness="0.2"
                                                                 data-fgColor="#FF0000	" data-skin="tron"
                                                                 data-angleOffset="180" readonly>
@@ -396,7 +398,7 @@
                                                     <h6 style="width: 100%; text-align: center" class="mb-0">Tỉ Lệ lỗi</h6>
                                                 </div>
                                             </div>
-                                        </div>
+                                        </div> --}}
 
                                         <div class="col-md-2">
                                             <div class="row">
@@ -405,13 +407,18 @@
                                                     <div class="col-xl-12">
                                                         <div class="progress-box text-center">
                                                             <input type="text" class="knob dial5"
-                                                                {{-- value="{{ 100 - ROUND(($product->inventory / $product->quantity) * 100, 2) }}" --}}
+                                                                value=" @if ($product->count_view)
+                                                                {{ 100 - ROUND(($product->count_buy / ($product->count_view) ?? 0) * 100, 2) }}
+                                                                @else
+                                                                {{0}}
+                                                                @endif
+                                                                "
                                                                 data-width="70" data-height="70" data-thickness="0.2"
                                                                 data-fgColor="#1b00ff" data-skin="tron"
                                                                 data-angleOffset="180" readonly>
                                                         </div>
                                                     </div>
-                                                    <h6 style="width: 100%; text-align: center" class="mb-0">Tỉ Lệ Tồn kho
+                                                    <h6 style="width: 100%; text-align: center" class="mb-0">Tỉ Lệ Mua Hàng
                                                     </h6>
                                                 </div>
                                             </div>
@@ -423,17 +430,20 @@
                                                     <div class="col-xl-12">
                                                         <div class="progress-box text-center" style="height: 75px">
                                                             <br>
-                                                            <h4 class="">4.5</h4>
+                                                            <h4 class="">{{$product->point}}/5</h4>
+                                                            <p style="color: #FF9900; font-size: 14px; margin-bottom: 5px">
+                                                                <?= $product->display_star ?>
+                                                            </p>
                                                         </div>
                                                     </div>
-                                                    <h6 style="width: 100%; text-align: center" class="mb-0">Đánh giá</h6>
+                                                    <h6 style="width: 100%; text-align: center" class="mb-0">{{$product->count_evaluate}} Đánh giá</h6>
                                                 </div>
                                             </div>
                                         </div>
                                         <div class="col-md-3">
                                             <div class="row">
                                                 <div class="col-sm-5">
-                                                    <h6 class="mb-0">Lợi nhuận tháng này</h6>
+                                                    <h6 class="mb-0">Doanh số tháng này</h6>
                                                 </div>
                                                 <div class="col-sm-7 text-secondary">
                                                     <h6 class="mb-15 text-danger h6">
@@ -444,7 +454,7 @@
                                             <hr>
                                             <div class="row">
                                                 <div class="col-sm-5">
-                                                    <h6 class="mb-0">Lợi nhuận Quý này</h6>
+                                                    <h6 class="mb-0">Doanh số Quý này</h6>
                                                 </div>
                                                 <div class="col-sm-7 text-secondary">
                                                     <h6 class="mb-15 text-danger h6">

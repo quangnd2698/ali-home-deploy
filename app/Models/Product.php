@@ -27,7 +27,6 @@ class Product extends Model
         'import_price',
         'sale_price',
         'count_view',
-        'count_buy',
         'type_code',
         'number_error',
         'status',
@@ -37,6 +36,7 @@ class Product extends Model
     ];
 
     protected $appends = [
+        'count_buy',
         'monthly_profit',
         'quarterly_profit',
         'point',
@@ -76,11 +76,21 @@ class Product extends Model
         return $this->hasMany('App\Models\Image', 'product_code', 'product_code');
     }
 
+    // public function invoiceDetail()
+    // {
+    //     return $this->hasMany('App\Models\InvoiceDetail', 'product_code', 'product_code');
+    // }
+
     public function comments()
     {
         return $this->hasMany('App\Models\Comment', 'product_id', 'id');
     }
 
+    public function getCountBuyAttribute()
+    {
+        $quantityProduct = InvoiceDetail::where('product_code', $this->product_code);
+        return  $quantityProduct ? $quantityProduct->count() : 0;
+    }
     
     public function getCountEvaluateAttribute()
     {

@@ -18,9 +18,7 @@ use Illuminate\Http\Request;
 |
 */
 
-Route::get('/', function () {
-    return view('welcome');
-});
+Route::get('/', 'ClientPageController@getHome');
 
 Route::get('403', function () {
     return view('admin/errors/403');
@@ -32,9 +30,7 @@ Route::get('admin/login', function(){
 Route::post('sign_in', 'LoginController@authenticate')->name('sign_in');
 
 Route::middleware('adminLogin')->prefix('admin')->group(function () {
-    Route::get('home',function(){
-        return view('admin/layout/index');
-    });
+    Route::get('home', 'HomeController@index')->name('home');
     Route::get('logout','LoginController@logout')->name('logout');
 
     // Route::post('login', 'AdminController@adminLogin');

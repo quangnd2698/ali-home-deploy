@@ -19,4 +19,9 @@ class OrderDetail extends Model
         'price_product',
         'total_price'
     ];
+
+    public function product()
+    {
+        return $this->hasOne('App\Models\Product', 'product_code', 'product_code');
+    }
 }

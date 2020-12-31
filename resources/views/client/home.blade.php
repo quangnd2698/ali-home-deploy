@@ -169,14 +169,14 @@
                                 @endif">
                                     <div class="product" style="width: 21% ;background-color: white; margin-left: 20px">
                                         <div class="image">
-                                            <a href="shop-detail.html">
-                                                <img src="images/products/product{{$key}}.jpg" alt=""
+                                            <a href="{{route('client.product_details', $product->id)}}">
+                                                <img src="images/products/product{{$key + 1}}.jpg" alt=""
                                                     style="object-fit: cover; height: 160px; width: 100%"
                                                     class="img-fluid">
                                             </a>
                                         </div>
                                         <div class="text" style="margin: 0px">
-                                            <a href="shop-detail.html" style="font-size: 13px; margin: 0%">{{$product->product_name}}</a>
+                                            <a href="{{route('client.product_details', $product->id)}}" style="font-size: 13px; margin: 0%">{{$product->product_name}}</a>
                                             <p class="price"
                                                 style="color: red;font-size: 13px; text-align: center;margin: 0%;padding: 0% ">
                                                 <del style="font-size: 10px">{{$product->sale_price + 20000}}</del>
@@ -191,10 +191,10 @@
                                                 <span><small style="font-size: 10px; color: #333333"> 12 đánh
                                                         giá</small></span>
                                             </p>
-                                            <a href="shop-detail.html" style="font-size: 12px"
+                                            <a href="{{route('client.product_details', $product->id)}}" style="font-size: 12px"
                                                 class="btn btn-default col-2">Xem</a>
-                                            <a href="shop-basket.html" style="font-size: 12px"
-                                                class="btn btn-success"><i class="fa fa-shopping-cart"></i>Thêm</a>
+                                            {{-- <a href="shop-basket.html" style="font-size: 12px"
+                                                class="btn btn-success"><i class="fa fa-shopping-cart"></i>Thêm</a> --}}
                                         </div>
                                         <div class="ribbon-holder">
                                             <div class="ribbon hot" style="text-align: left;width: 40px;"><small
@@ -224,7 +224,7 @@
             <!-- Carousel End-->
         </div>
         <br>
-        <div class="col-12 row">
+        {{-- <div class="col-12 row">
             <div  style="width: 10%"></div>
             <div class="col-10 card" style="padding: 10px 10px 10px 10px">
                 <div class="row">
@@ -316,7 +316,7 @@
             <div class="col" style="width: 5%"></div>
 
             <!-- Carousel End-->
-        </div>
+        </div> --}}
 
         <br>
         <div class="col-12 row">
@@ -360,14 +360,14 @@
                                 @endif">
                                     <div class="product" style="width: 21% ;background-color: white; margin-left: 20px">
                                         <div class="image">
-                                            <a href="shop-detail.html">
-                                                <img src="images/products/product{{$key}}.jpg" alt=""
+                                            <a href="{{route('client.product_details', $product->id)}}">
+                                                <img src="images/products/product{{$key + 1}}.jpg" alt=""
                                                     style="object-fit: cover; height: 160px; width: 100%"
                                                     class="img-fluid">
                                             </a>
                                         </div>
                                         <div class="text" style="margin: 0px">
-                                            <a href="shop-detail.html" style="font-size: 13px; margin: 0%">{{$product->product_name}}</a>
+                                            <a href="{{route('client.product_details', $product->id)}}" style="font-size: 13px; margin: 0%">{{$product->product_name}}</a>
                                             <p class="price"
                                                 style="color: red;font-size: 13px; text-align: center;margin: 0%;padding: 0% ">
                                                 <del style="font-size: 10px">{{$product->sale_price + 20000}}</del>
@@ -382,10 +382,10 @@
                                                 <span><small style="font-size: 10px; color: #333333"> 12 đánh
                                                         giá</small></span>
                                             </p>
-                                            <a href="shop-detail.html" style="font-size: 12px"
+                                            <a href="{{route('client.product_details', $product->id)}}" style="font-size: 12px"
                                                 class="btn btn-default col-2">Xem</a>
-                                            <a href="shop-basket.html" style="font-size: 12px"
-                                                class="btn btn-success"><i class="fa fa-shopping-cart"></i>Thêm</a>
+                                            {{-- <a href="shop-basket.html" style="font-size: 12px"
+                                                class="btn btn-success"><i class="fa fa-shopping-cart"></i>Thêm</a> --}}
                                         </div>
                                         <div class="ribbon-holder">
                                             <div class="ribbon hot" style="text-align: left;width: 40px;"><small

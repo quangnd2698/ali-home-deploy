@@ -53,6 +53,11 @@ class AppServiceProvider extends ServiceProvider
             \App\Services\AjaxServiceInterface::class,
             \App\Services\AjaxService::class,
         );
+
+        $this->app->singleton(
+            \App\Services\HomeServiceInterface::class,
+            \App\Services\HomeService::class,
+        );
     }
 
     /**

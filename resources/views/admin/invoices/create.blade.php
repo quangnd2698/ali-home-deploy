@@ -46,8 +46,17 @@
     }
     function del(item) {
         var id = $(item).attr("id");
-        $('#product_had_selected-'+id).remove();
-        $('input[name="checkbox-'+id+'"]').prop("checked", false);
+        $('#tr'+id).hide();
+        $('#tr'+id).children().children().prop('disabled', true);
+        $('#tr'+id).children().children().val(null);
+        // var listProductSelected = $.cookie("list_product") ?? null;
+        // var array = Array(listProductSelected)
+        // // alert(Array(listProductSelected));
+        // var index = listProductSelected.indexOf(id);
+        // alert(listProductSelected.slice(0,index);
+        // if (index > -1) {
+        //     listProductSelected.splice(index, 1);
+        // }
         sumTotal();
     }
 
@@ -134,22 +143,21 @@
         getPromotion();
     });
 
-    $.cookie("list_product_selected", { path: '/admin/importInvoices' });
+    $.cookie("list_product", { path: '/admin/invoices' });
     function addProduct(data) {
         var count = $('#count_product').val();
-        var listProductSelected = $.cookie("list_product_selected") ?? null;
-        // alert(data.id, listProductSelected );
+        var listProductSelected = $.cookie("list_product") ?? null;
         if (listProductSelected.indexOf(data.id) == -1) {
 
             listProductSelected += ','
             listProductSelected += data.id; 
-            // alert(2);
+            // alert(data.id);
             count ++;
             var text = '<tr class="tr_num" id="tr'+data.id + '"><td>'+ count +'</td><td style="padding: 0%; width: 20%;"><input type="text" class="form-control" name="details['+ data.id + '][product_name]" value="'+ data.product_name+'" readonly></td><td style="padding: 0%; width: 20%;"><input type="text" class="form-control " name="details[' +data.id +'][product_code]" value="'+ data.product_code+'" readonly></td><td style="padding: 0%; width: 10%;"><input type="number" class="form-control" name="details['+ data.id +'][quantity_product]" min="0" value="1" onchange="totalPrice('+ data.id +')"></td><td style="padding: 0%; width: 20%;"><input type="number" class="form-control" name="details['+ data.id +'][price_product]" min="0" value="'+ data.sale_price+'" readonly onchange="totalPrice('+ count +')"></td><td style="padding: 0%; width: 20%;"><input type="number" class="form-control total_price" name="details['+ data.id +'][total_price]" readonly ></td><td style="padding: 2px" ><button type="button" id="'+ data.id +'" style="padding: 5px 10px 5px 10px" class="btn btn-danger" onclick="del(this)"><i class="icon-copy fa fa-trash" aria-hidden="true"></i></button></td></tr>'
             $('#table_import_body').append(text);
             $('#count_product').val(count);
             totalPrice(data.id);
-            $.cookie("list_product_selected", listProductSelected, { path: '/admin/importInvoices' });
+            $.cookie("list_product", listProductSelected, { path: '/admin/invoices' });
         
         }
 
@@ -157,8 +165,7 @@
 
     $('#sub').click(function(){
         
-        $.removeCookie("list_product_selected", { path: '/admin/importInvoices' });
-        alert(1);
+        $.removeCookie("list_product", { path: '/admin/invoices' });
     });
 
     $(document).ready(function($) {

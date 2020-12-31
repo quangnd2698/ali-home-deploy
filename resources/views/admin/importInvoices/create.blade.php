@@ -163,7 +163,7 @@
     function addProduct(data) {
         var count = $('#count_product').val();
         var listProductSelected = $.cookie("list_product_selected") ?? null;
-        // alert(data.id, listProductSelected );
+        alert(JSON.stringify(listProductSelected));
         if (listProductSelected.indexOf(data.id) == -1) {
 
             listProductSelected += ','

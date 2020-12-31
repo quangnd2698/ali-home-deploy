@@ -66,6 +66,9 @@
                                                         value="{{Auth::guard('web')->user()->name}}" readonly
                                                     @endif
                                                     >
+                                                    @if ($errors->has('customer_name'))
+                                                        <p style="color: red">{{ $errors->first('customer_name') }}</p>
+                                                    @endif
                                                 </div>
                                             </div>
                                             <div class="col-sm-6">
@@ -77,6 +80,9 @@
                                                     @else 
                                                         onchange="getPromotion()"
                                                     @endif>
+                                                    @if ($errors->has('customer_phone'))
+                                                        <p style="color: red">{{ $errors->first('customer_phone') }}</p>
+                                                    @endif
                                                 </div>
                                             </div>
                                         </div>

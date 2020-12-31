@@ -87,10 +87,10 @@
                                     </table>
                                 </div>
                                 <div class="box-footer d-flex justify-content-between align-items-center">
-                                    <div class="left-col"><a href="products" class="btn btn-secondary mt-0"><i
+                                    <div class="left-col"><a href="products/ceramic?type=all" class="btn btn-secondary mt-0"><i
                                                 class="fa fa-chevron-left"></i> Tiếp tục mua</a></div>
                                     <div class="right-col">
-                                        <button class="btn btn-secondary"><i class="fa fa-refresh"></i> Cập nhật giỏ hàng</button>
+                                        {{-- <button class="btn btn-secondary"><i class="fa fa-refresh"></i> Cập nhật giỏ hàng</button> --}}
                                         <a href="{{route('client.checkouts')}}"><button type="button" class="btn btn-template-outlined">Tiến hành thanh toán <i
                                             class="fa fa-chevron-right"></i></button></a>
                                     </div>

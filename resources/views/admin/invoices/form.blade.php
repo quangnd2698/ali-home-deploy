@@ -99,12 +99,7 @@
             </div>
         </div>
     </div>
-    {{-- <input type="number" id="count_product" hidden 
-    @if (isset($importInvoice))
-    value="{{count($importInvoice->importInvoiceDetail)}}"
-    @else
-        value="{{1}}"
-    @endif> --}}
+    <input type="number" id="count_product" hidden value="0">
 </div>
 <input type="text" name="sales_channel" hidden value="store">
 <input type="number" hidden name="last_cost">

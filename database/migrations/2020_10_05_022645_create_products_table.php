@@ -30,7 +30,7 @@ class CreateProductsTable extends Migration
             $table->integer('sale_price');
             $table->string('type_code')->nullable();
             $table->integer('count_view')->nullable();
-            $table->integer('count_buy')->nullable();
+            // $table->integer('count_buy')->nullable();
             $table->integer('number_error')->nullable();
             $table->string('sale_on_web',8)->nullable();;
             $table->string('status',10);

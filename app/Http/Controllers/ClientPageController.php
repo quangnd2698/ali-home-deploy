@@ -24,11 +24,11 @@ class ClientPageController extends Controller
     }
     public function getHome() {
         $newProducts  = Product::query()->orderBy('created_at', 'desc')->get()->take(10);
-        $topBuyProducts  = Product::query()->orderBy('count_buy', 'desc')->get()->take(10);
+        // $topBuyProducts  = Product::query()->orderBy('count_buy', 'desc')->get()->take(10);
         $saleProducts  = Product::query()->take(10)->get();
         return view('client/home', [
             'newProducts' => $newProducts,
-            'topBuyProducts' => $topBuyProducts,
+            // 'topBuyProducts' => $topBuyProducts,
             'saleProducts' => $saleProducts,
         ]);
     }

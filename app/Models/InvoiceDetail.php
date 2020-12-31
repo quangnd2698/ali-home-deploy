@@ -20,4 +20,20 @@ class InvoiceDetail extends Model
         'price_product',
         'total_price'
     ];
+
+    protected $appends = [
+        'product_type',
+        'type_code'
+    ];
+
+    public function getProductTypeAttribute()
+    {
+        return Product::where('product_code', $this->product_code)->first()->product_type;
+    }
+
+    public function getTypeCodeAttribute()
+    {
+        return Product::where('product_code', $this->product_code)->first()->type_code;
+    }
+
 }

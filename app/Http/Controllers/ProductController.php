@@ -26,8 +26,8 @@ class ProductController extends Controller
      */
     public function index()
     {
-        // $products = Product::where('product_code', 'SP-001')->first();
-        return view('admin/products/index', ['products' => $this->product->get()]);
+        $products = Product::with('images')->get();
+        return view('admin/products/index', ['products' => $products]);
     }
 
     /**

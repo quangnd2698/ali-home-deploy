@@ -372,17 +372,17 @@
                             <div class="panel-heading">
                                 <h5 class="panel-title">Combo theo sản phẩm</h5>
                             </div>
-                            @foreach ($product->combo_product as $combo)
+                            @foreach ($product->combo_product as $key => $combo)
                                 <div class="product" style="background-color: white;x">
                                     <div class="image">
-                                        <a href="shop-detail.html">
-                                            <img src="images/products/product1.jpg" alt=""
+                                        <a href="product_details/{{$combo->id}}">
+                                            <img src="images/products/product{{$key+1}}.jpg" alt=""
                                                 style="object-fit: cover; height: 160px; width: 100%"
                                                 class="img-fluid">
                                         </a>
                                     </div>
                                     <div class="text" style="margin: 0px">
-                                        <a href="shop-detail.html" style="font-size: 13px; margin: 0%">{{$combo->product_name}}</a>
+                                        <a href="product_details/{{$combo->id}}" style="font-size: 13px; margin: 0%">{{$combo->product_name}}</a>
                                         <p class="price"
                                             style="color: red;font-size: 13px; text-align: center;margin: 0%;padding: 0% ">
                                             <del style="font-size: 10px">{{$combo->sale_price + 20000}}</del>
@@ -454,14 +454,14 @@
                                         @endif">
                                         <div class="product" style="width: 21% ;background-color: white; margin-left: 20px">
                                             <div class="image">
-                                                <a href="shop-detail.html">
-                                                    <img src="images/products/product1.jpg" alt=""
+                                                <a href="{{route('client.product_details', $product->id)}}">
+                                                    <img src="images/products/product{{$key+1}}.jpg" alt=""
                                                         style="object-fit: cover; height: 160px; width: 100%"
                                                         class="img-fluid">
                                                 </a>
                                             </div>
                                             <div class="text" style="margin: 0px">
-                                                <a href="shop-detail.html" style="font-size: 13px; margin: 0%">{{$similarProduct->product_name}}</a>
+                                                <a href="{{route('client.product_details', $product->id)}}" style="font-size: 13px; margin: 0%">{{$similarProduct->product_name}}</a>
                                                 <p class="price"
                                                     style="color: red;font-size: 13px; text-align: center;margin: 0%;padding: 0% ">
                                                     <del style="font-size: 10px">{{$similarProduct->sale_price + 20000}}</del>

@@ -150,21 +150,24 @@ class ProductController extends Controller
         $data = collect();
 
         foreach ($searchParams as $param) {
-            $products =  Product::where('product_name', 'like', '%' . $param . '%')
+            $products =  Product::where('status', 'active')
+                ->where('product_name', 'like', '%' . $param . '%')
                 ->orWhere('product_code', 'like', '%' . $param . '%')
                 ->orWhere('producer', 'like', '%' . $param . '%')->get();
             $data = $data->merge($products);
         }
 
         foreach ($searchParams as $param) {
-            $products =  Product::where('product_name', 'like', '%' . $param . '%')
+            $products =  Product::where('status', 'active')
+                ->where('product_name', 'like', '%' . $param . '%')
                 ->orWhere('product_code', 'like', '%' . $param . '%')
                 ->orWhere('producer', 'like', '%' . $param . '%')->get();
             $data = $data->merge($products);
         }
 
         foreach ($searchParam2 as $param) {
-            $products =  Product::where('product_name', 'like', '%' . $param . '%')
+            $products =  Product::where('status', 'active')
+                ->where('product_name', 'like', '%' . $param . '%')
                 ->orWhere('product_code', 'like', '%' . $param . '%')
                 ->orWhere('producer', 'like', '%' . $param . '%')->get();
             $data = $data->merge($products);

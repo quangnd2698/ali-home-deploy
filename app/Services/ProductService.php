@@ -38,7 +38,7 @@ class ProductService implements ProductServiceInterface
             'status' => 'required|string|max:10',
             'point' => 'nullable|numeric',
             'description' => 'nullable|string',
-            'sale_on_web' => 'nullable|string|max:8',
+            // 'sale_on_web' => 'nullable|string|max:8',
         ]);
         return [$validator->passes(), $validator->errors()];
     }
@@ -71,7 +71,7 @@ class ProductService implements ProductServiceInterface
             'status' => 'sometimes|string|max:10',
             'point' => 'nullable|numeric',
             'description' => 'nullable|string',
-            'sale_on_web' => 'nullable|string|max:8',
+            // 'sale_on_web' => 'nullable|string|max:8',
         ]);
         return [$validator->passes(), $validator->errors()];
     }
@@ -114,7 +114,7 @@ class ProductService implements ProductServiceInterface
             'sale_price',
             'status',
             'description',
-            'sale_on_web',
+            // 'sale_on_web',
         ]);
 
         // $dataLabels = $request->only([
@@ -189,7 +189,7 @@ class ProductService implements ProductServiceInterface
             'sale_price',
             'status',
             'description',
-            'sale_on_web',
+            // 'sale_on_web',
         ]);
 
         list($success, $errors) = $this->validateUpdateProductRequest($data, $id);

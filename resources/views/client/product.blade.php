@@ -185,8 +185,9 @@
                                 <div class="product" style="background-color: ">
                                     <div class="image" style="">
                                         <a href="{{ route('client.product_details', $product->id)}}">
-                                            <img src="images/products/product{{ $key + 1 }}.jpg" alt=""
-                                                style="object-fit: cover; height: 160px; width: 100%" class="img-fluid">
+                                            <img
+                                            @if($product->images->first()) src="images/products/{{$product->images->first()->name}}" @else src="images/products/product{{ $key + 1 }}.jpg" @endif
+                                            alt="" style="object-fit: cover; height: 160px; width: 100%" class="img-fluid">
                                         </a>
                                         <br>
                                         <div class="text">

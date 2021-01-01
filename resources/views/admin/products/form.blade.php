@@ -88,7 +88,10 @@
             <div class="row">
                 <div class="col-md-6 col-sm-12">
                     <div class="custom-control custom-radio mb-5">
-                        <input type="radio" id="size1" name="size" class="custom-control-input">
+                        <input type="radio" id="size1" name="size" class="custom-control-input" @if(isset($product) && $product->size == '10x10')
+                        {{'checked'}}
+                    @endif>
+                       
                         <label class="custom-control-label" for="size1">10x10</label>
                     </div>
                     <div class="custom-control custom-radio mb-5">
@@ -156,7 +159,27 @@
                         @endif>
                         <label class="custom-control-label" for="size10">30x60</label>
                     </div>
+                    <div class="custom-control custom-radio mb-5">
+                        <input type="radio" id="size-o" name="size" class="custom-control-input" value="khác"
+                        @if(!isset($product) || !in_array($product->size,[
+                        '10x10',
+                        '20x20',
+                        '30x30',
+                        '40x40',
+                        '50x50',
+                        '60x60',
+                        '10x40',
+                        '10x40',
+                        '20x30',
+                        '30x60',]))
+                            {{'checked'}}
+                        @endif>
+                        <label class="custom-control-label" for="size-0">Khác</label>
+                    </div>
                 </div>
+                @if ($errors->has('size'))
+                        <p style="color: red">{{ $errors->first('size') }}</p>
+                    @endif
             </div>
             </div>
             <div class="col-md-9">
@@ -265,7 +288,7 @@
                     @endif
                 </div>
             </div>
-            <div class="col-md-9">
+            {{-- <div class="col-md-9">
                 <div class="form-group @if ($errors->has('sale_on_web')) {{'has-danger'}} @endif">
                     <label>Bán trên Website </label>
                     <div class="custom-control custom-checkbox mb-5">
@@ -277,7 +300,7 @@
                         <label class="custom-control-label" for="customCheck1"></label>
                     </div>
                 </div>
-            </div>
+            </div> --}}
             <div class="col-md-9">
                 <div class="form-group">
                     <label>Mô tả </label>

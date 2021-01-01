@@ -44,23 +44,34 @@
                         <div id="productMain" class="row">
                             <div class="col-sm-5">
                                 <div data-slider-id="1" class="owl-carousel shop-detail-carousel" style="height: 400px">
+                                    @if (!$product->images->first())
                                     <div> <img src="images/products/product2.jpg" alt="" class="img-fluid"
-                                            style="height: 400px; object-fit: cover">
+                                        style="height: 400px; object-fit: cover">
                                     </div>
-                                    <div> <img src="images/products/product3.jpg" alt="" class="img-fluid"
+                                    @else
+                                        @foreach ($product->images as $key => $image)
+                                        <div> <img src="images/products/{{$image->name}}" alt="" class="img-fluid"
                                             style="height: 400px; object-fit: cover">
-                                    </div>
-                                    <div> <img src="images/products/product4.jpg" alt="" class="img-fluid"
-                                            style="height: 400px; object-fit: cover">
-                                    </div>
+                                        </div>
+                                        @endforeach
+                                    @endif
                                 </div>
                                 <div data-slider-id="1" class="owl-thumbs" style="height: 70px">
+                                    @if (!$product->images->first())
                                     <button class="owl-thumb-item"><img src="images/products/product2.jpg" alt=""
+                                        class="img-fluid" style="height: 70px"></button>
+                                    @else
+                                        @foreach ($product->images as $key => $image)
+                                        <button class="owl-thumb-item"><img src="images/products/{{$image->name}}" alt=""
+                                            class="img-fluid" style="height: 70px"></button>
+                                        @endforeach
+                                    @endif
+                                    {{-- <button class="owl-thumb-item"><img src="images/products/product2.jpg" alt=""
                                             class="img-fluid" style="height: 70px"></button>
                                     <button class="owl-thumb-item"><img src="images/products/product3.jpg" alt=""
                                             class="img-fluid" style="height: 70px"></button>
                                     <button class="owl-thumb-item"><img src="images/products/product4.jpg" alt=""
-                                            class="img-fluid" style="height: 70px"></button>
+                                            class="img-fluid" style="height: 70px"></button> --}}
                                 </div>
                             </div>
                             <div class="col-sm-7">

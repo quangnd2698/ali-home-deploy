@@ -15,6 +15,7 @@ class ClientPageService implements ClientPageServiceInterface
     public function getProducts($params, $request)
     {   
         $products  = Product::where('status', 'active');
+        dd($products->where('product_code', 'SP1483')->get());
         $data = explode(',', $params);
         $brands = Brand::query();
 

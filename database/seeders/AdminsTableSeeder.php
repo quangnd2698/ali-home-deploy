@@ -35,6 +35,7 @@ class AdminsTableSeeder extends Seeder
             'phone' => 012345657,
             'date_of_birth' => '2020/01/01',
             'gender' => 'nam',
+            'basic_salary' => '8000000',
             'permission' => 2,
         ]);
         Admin::create([
@@ -44,8 +45,9 @@ class AdminsTableSeeder extends Seeder
             'address' => 'no where',
             'phone' => 0123456571,
             'date_of_birth' => '2020/01/01',
+            'basic_salary' => '7000000',
             'gender' => 'nam',
-            'permission' => 3,
+            'permission' => 2,
         ]);
         Admin::create([
             'name' => 'Nguyễn Văn B',
@@ -54,8 +56,9 @@ class AdminsTableSeeder extends Seeder
             'address' => 'no where',
             'phone' => 012345645,
             'date_of_birth' => '2020/01/01',
+            'basic_salary' => '8000000',
             'gender' => 'nam',
-            'permission' => 2,
+            'permission' => 3,
         ]);
         Admin::create([
             'name' => 'Nguyễn Văn C',
@@ -64,9 +67,10 @@ class AdminsTableSeeder extends Seeder
             'address' => 'no where',
             'phone' => 012345650,
             'date_of_birth' => '2020/01/01',
+            'basic_salary' => '2000000',
             'gender' => 'nam',
-            'permission' => 3,
+            'permission' => 4,
         ]);
-        Admin::factory()->times(5)->create();
+        // Admin::factory()->times(5)->create();
     }
 }

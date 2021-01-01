@@ -74,6 +74,7 @@
                                                     ><i class="fa fa-trash-o"></i></button></td>
                                                 <input type="number" name="product_price-{{$cart->product_id}}" value="{{$cart->price}}" hidden>
                                                 <input class="total_price" type="number" name="total_price-{{$cart->product_id}}" value="{{$cart->total_price}}" hidden>
+                                                <input type="number" name="max_quantity-{{$cart->product_id}}" value="{{$cart->max_quantity}}" hidden>
                                             </tr>
                                             @endforeach
                                         </tbody>
@@ -183,6 +184,17 @@
     </script> --}}
     <script>
         
+        function checkQuantity(product, quantity)
+        {
+            var max = $('input[name="max_quantity-'+product+'"]').val();
+            if (Number(max) < Number(quantity)) {
+                alert('số lượng vượt quá tồn kho của sản phẩm')
+                $('input[name="quantity_product-'+product+'"]').val(max);
+            } else {
+                $('input[name="quantity_product-'+product+'"]').val(quantity);
+            }
+        }
+
         function formatNumber (num) {
             return num.toString().replace(/(\d)(?=(\d{3})+(?!\d))/g, "$1,")
         }
@@ -191,7 +203,6 @@
         {
             var cost = 0;
             $('.total_price').each(function() {
-                // var quantity = $('input[name="quantity_product-'+id+'"]').val();
                 cost += Number($(this).val());
             });
 
@@ -213,8 +224,11 @@
 
         function changeQuantity(id)
         {
-            var quantity = $('input[name="quantity_product-'+id+'"]').val();
-            $.cookie("count_product-"+id, quantity,{ expires: 7, path: '/' });
+        //    / var quantity = $('input[name="quantity_product-'+id+'"]').val();
+            checkQuantity(id, $('input[name="quantity_product-'+id+'"]').val());
+            var quantityNew = $('input[name="quantity_product-'+id+'"]').val();
+            alert(quantityNew)
+            $.cookie("count_product-"+id, quantityNew,{ expires: 7, path: '/' });
             loadPrice(id);
         }
 
@@ -237,6 +251,8 @@
         function changeCartAuth( product, id, action)
         {
             
+            // var quantity = $('input[name="quantity_product-'+product+'"]').val();
+            checkQuantity(product, $('input[name="quantity_product-'+product+'"]').val());
             var quantity = $('input[name="quantity_product-'+product+'"]').val();
             var request = $.ajax({
                 url: "ajax/updateCartAuth",
@@ -259,6 +275,8 @@
                 alert( "Request failed: " + textStatus );
             });
         }
+
+        
 
     </script>
 @endsection

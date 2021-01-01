@@ -83,6 +83,7 @@ class ClientPageController extends Controller
             unset($data[0]);
             array_pop($data);
             $products = Product::whereIn('id', $data)->get();
+            // $productQuantity = $products->pluck('quantity');
             $params = $products->map(function ($product, $key) {
                 return [
                     'product_id' => $product->id,
@@ -90,6 +91,7 @@ class ClientPageController extends Controller
                     'quantity' =>$_COOKIE['count_product-' . $product->id] ?? 1,
                     'price' => $product->sale_price,
                     'total_price' => $product->sale_price * ($_COOKIE['count_product-' . $product->id] ?? 1),
+                    'max_quantity' => $product->quantity,
                 ];
             });
             foreach ($params as $param) {

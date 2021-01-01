@@ -21,10 +21,7 @@ class SalaryController extends Controller
      */
     public function index()
     {
-        $salaries = Salary::query()->get();
-        // // $salaries = Salary::findOrfail(1);
-        // // $detail = SalaryDetail::query()->get();
-        // dd($salaries);
+        $salaries = Salary::all();
         return view('admin/salaries/index', [
             'salaries' => $salaries
         ]);
@@ -37,7 +34,7 @@ class SalaryController extends Controller
      */
     public function create()
     {
-        $staffs = Admin::query()->get();
+        $staffs = Admin::where('permission', '!=', 1)->get();
         // dd($staffs->first()->workday);
         return view('admin/salaries/salary_month', [
             'staffs' => $staffs,
@@ -91,7 +88,7 @@ class SalaryController extends Controller
      */
     public function edit($id)
     {
-        $staffs = Admin::query()->get();
+        $staffs = Admin::where('permission', '!=', 1)->get();
         return view('admin/salaries/salary_month', [
             'staffs' => $staffs,
         ]);
@@ -128,7 +125,7 @@ class SalaryController extends Controller
      */
     public function SlaryOfMonth(Request $request)
     {
-        $staffs = Admin::query()->get();
+        $staffs = Admin::where('permission', '!=', 1)->get();
         return view('admin/salaries/salary_month', [
             'staffs' => $staffs,
         ]);
@@ -143,7 +140,7 @@ class SalaryController extends Controller
     public function getPayroll()
     {
         // dd(1);
-        $staffs = Admin::query()->get();
+        $staffs = Admin::where('permission', '!=', 1)->get();
         return view('admin/salaries/payroll', [
             'staffs' => $staffs,
         ]);

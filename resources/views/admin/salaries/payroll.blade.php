@@ -19,7 +19,7 @@
                     <i class="icon-copy fi-upload"></i>
                     Import
                 </button> --}}
-                <button type="button" class="btn btn-outline-info col-3" style="margin-right: 15px">
+                {{-- <button type="button" class="btn btn-outline-info col-3" style="margin-right: 15px">
                     <i class="icon-copy fi-download"></i>
                     Xuất file
                 </button>
@@ -27,7 +27,7 @@
                     data-target="#warning-modal">
                     <span class="icon-copy fa fa-minus "></span>
                     Xóa nhiều
-                </button>
+                </button> --}}
             @endcan
         </div>
     </div>
@@ -58,7 +58,7 @@
                         <td><div class="dt-checkbox"><input type="checkbox" name="checkbox-{{$staff->id}}" value=""><span class="dt-checkbox-label"></span></div></td>
                         <td>{{ $staff->id }}</td>
                         <td>{{ $staff->name }}</td>
-                        <td>{{ $staff->permission}}</td>
+                        <td>{{ $staff->position}}</td>
                         <td>{{ number_format($staff->basic_salary , 0, ',', ',') }}</td>
                         {{-- <td>{{ $staff->point }}</td> --}}
                         <td style="font-size: 16px" class="row dropdown">

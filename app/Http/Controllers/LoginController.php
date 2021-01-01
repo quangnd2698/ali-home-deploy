@@ -26,6 +26,9 @@ class LoginController extends Controller
                 case 3:
                     return redirect()->route('importInvoices.create');
                 break;
+                case 4:
+                    return redirect()->route('admins.index');
+                break;
                 default;
             }
             // return redirect()->route('admins.index');

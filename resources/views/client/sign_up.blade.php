@@ -284,6 +284,21 @@ body {
                     $('#ward').html(data);
                 });
             }
+
+    $('input[name="confirm_password"]').keyup(function() {
+        var confirm_password = $('input[name="confirm_password"]').val();
+        $('#text_confirm').text('Xác nhận mật khẩu không khớp');
+        $('input[name="confirm_password"]').attr('class', 'form-control form-control-danger');
+        $('#div_confirm').attr('class', 'form-group row has-danger');
+        $('#submit').prop( "disabled", true );
+        var password = $('input[name="password"]').val();
+        if (confirm_password === password) {
+            $('input[name="confirm_password"]').attr('class', 'form-control form-control-success');
+            $('#text_confirm').hide();
+            $('#div_confirm').attr('class', 'form-group row');
+            $('#submit').prop( "disabled", false );
+        }
+    });
 </script>
 </body>
 </html>

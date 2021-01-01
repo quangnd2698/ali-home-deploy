@@ -125,4 +125,22 @@ class AjaxService implements AjaxServiceInterface
         return true;
     }
 
+    public function checkQuantity($id, $quantity)
+    {
+        // \Log::info($quantity);
+        $product = Product::findOrFail($id);
+
+        if ($product->quantity < $quantity) {
+            return [
+                'result' => false,
+                'count' => $product->quantity
+            ];
+        }
+
+        return [
+            'result' => true,
+            'count' => $quantity
+        ];
+    }
+
 }

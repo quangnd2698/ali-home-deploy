@@ -22,6 +22,7 @@ class Cart extends Model
         'product_name',
         'price',
         'total_price',
+        'max_quantity'
     ];
 
     public function product()
@@ -42,5 +43,10 @@ class Cart extends Model
     public function getTotalPriceAttribute()
     {
         return $this->price * $this->quantity;
+    }
+
+    public function getMaxQuantityAttribute()
+    {
+        return  $this->product ? $this->product->quantity : 0;
     }
 }

@@ -100,20 +100,34 @@
                                                         style="color: red; font-size: 20px">5%</span> (giá gốc) <del>{{ number_format($product->sale_price + 30000, 0, ',', ' ') }}
                                                         VNĐ</del></p>
                                             </div>
-                                            <div class=" number col-5 row">
-                                                <button class="minus col-3 btn btn-danger" type="button"
-                                                    style="padding: 0px 0px 0px 0px; border-radius: 10px 0px 0px 10px">
-                                                    <i class="fa fa-2x fa-minus-square"></i>
-                                                </button>
-                                                <div class="col-6" style="padding: 0px">
-                                                    <input class="form-control" min="0" name="count_product" type="number" value="1"
-                                                        style="display: block">
+                                            <input type="number" name="max_quantity" value="{{$product->quantity}}">
+                                            <div class="col-12 row">
+                                                <div class=" number col-5 row">
+                                                    <button class="minus col-3 btn btn-danger" type="button"
+                                                        style="padding: 0px 0px 0px 0px; border-radius: 10px 0px 0px 10px">
+                                                        <i class="fa fa-2x fa-minus-square"></i>
+                                                    </button>
+                                                    <div class="col-6" style="padding: 0px">
+                                                        <input class="form-control" min="0" name="count_product" type="number" value="1" 
+                                                            style="display: block">
+                                                    </div>
+                                                    <button class="plus col-3 btn btn-success" type="button"
+                                                        style="padding: 0px 0px 0px 0px; border-radius: 0px 10px 10px 0px">
+                                                        <i class="fa fa-2x fa-plus-square"></i>
+                                                    </button>
                                                 </div>
-                                                <button class="plus col-3 btn btn-success" type="button"
-                                                    style="padding: 0px 0px 0px 0px; border-radius: 0px 10px 10px 0px">
-                                                    <i class="fa fa-2x fa-plus-square"></i>
-                                                </button>
+                                                <div class="col-7" style="text-align: center">
+                                                    <h3 style="margin-top: 10px; margin-bottom: 5px">
+                                                        @if ($product->quantity > 0)
+                                                            Tồn kho: {{$product->quantity}}
+                                                        @else
+                                                        <p style="color: red">HẾT HÀNG</p>
+                                                        @endif
+                                                        
+                                                    </h3>
+                                                </div>
                                             </div>
+                                            
                                             <br>
                                             <p class="text-center">
                                                 @if (Auth::guard('web')->check())
@@ -507,6 +521,18 @@
 @section('script')
 <script src="client/product_details.js"></script>
     <script>
+
+        function checkQuantity() {
+            var count = $('input[name="count_product"]').val();
+            var max_quantity = $('input[name="max_quantity"]').val();
+            // alert(max_quantity)
+            if (Number(count) > Number(max_quantity)) {
+                return false
+            } else {
+                return true
+            }
+            
+        }
         $(document).ready(function() {
             $('.minus').click(function() {
                 var $input = $(this).parent().find('input');
@@ -556,43 +582,52 @@
 
     // $.cookie("cart_product",",",{ expires: 7, path: '/' });
     function addToCart(id) {
-        var listProduct = $.cookie("cart_product");
-        var count = $('input[name="count_product"]').val();
+        alert(checkQuantity());
+        if (checkQuantity() == true) {
+            var listProduct = $.cookie("cart_product");
+            var count = $('input[name="count_product"]').val();
 
-        if (listProduct == null || listProduct.search(','+ id + ',') == -1) {
-            // alert(1);
-            if (listProduct == null) {
-                listProduct = ','
+            if (listProduct == null || listProduct.search(','+ id + ',') == -1) {
+                // alert(1);
+                if (listProduct == null) {
+                    listProduct = ','
+                }
+                listProduct += id;
+                listProduct += ','
+
+                $.cookie("cart_product", listProduct,{ expires: 7, path: '/' });
+                $.cookie("count_product-"+id, count,{ expires: 7, path: '/' });
+                // $.cookie("product-"+id, id,{ expires: 7, path: '/' });
+                alertSuccess();
+            } else {
+                alertErrors();
             }
-            listProduct += id;
-            listProduct += ','
-
-            $.cookie("cart_product", listProduct,{ expires: 7, path: '/' });
-            $.cookie("count_product-"+id, count,{ expires: 7, path: '/' });
-            // $.cookie("product-"+id, id,{ expires: 7, path: '/' });
-            alertSuccess();
         } else {
-            alertErrors();
+            alert('số hàng trong kho không đủ')
         }
     }
 
     function getCheckout(id)
     {
-        var listProduct = $.cookie("cart_product");
-        var count = $('input[name="count_product"]').val();
+        if (checkQuantity() == true) {
+            var listProduct = $.cookie("cart_product");
+            var count = $('input[name="count_product"]').val();
 
-        if (listProduct == null || listProduct.search(','+ id + ',') == -1) {
-            // alert(1);
-            if (listProduct == null) {
-                listProduct = ','
+            if (listProduct == null || listProduct.search(','+ id + ',') == -1) {
+                // alert(1);
+                if (listProduct == null) {
+                    listProduct = ','
+                }
+                listProduct += id;
+                listProduct += ','
+
+                $.cookie("cart_product", listProduct,{ expires: 7, path: '/' });
+                $.cookie("count_product-"+id, count,{ expires: 7, path: '/' });
             }
-            listProduct += id;
-            listProduct += ','
-
-            $.cookie("cart_product", listProduct,{ expires: 7, path: '/' });
-            $.cookie("count_product-"+id, count,{ expires: 7, path: '/' });
-        }
-        window.location.href='/carts'; 
+            window.location.href='/carts';
+        } else {
+            alert('số hàng trong kho không đủ')
+        } 
 
     }
 
@@ -661,28 +696,35 @@
     });
 
     function addToCartAuth (product_id, flag) {
-        var product_id = $('input[name="product_id"]').val();
-        var count = $('input[name="count_product"]').val();
-        var request = $.ajax({
-            url: "ajax/addToCartAuth",
-            method: "GET",
-            data: {
-                quantity : count,
-                product_id : product_id,
-            },
-            dataType: "html"
-        });
-        request.done(function( data ) {
-            if (flag == 'checkout') {
-                window.location.href='/carts'; 
-            } else {
-                alertSuccess();
-            }
-        });
+
+        if (checkQuantity() == true) {
+            var product_id = $('input[name="product_id"]').val();
+            var count = $('input[name="count_product"]').val();
+            var request = $.ajax({
+                url: "ajax/addToCartAuth",
+                method: "GET",
+                data: {
+                    quantity : count,
+                    product_id : product_id,
+                },
+                dataType: "html"
+            });
+            request.done(function( data ) {
+                if (flag == 'checkout') {
+                    window.location.href='/carts'; 
+                } else {
+                    alertSuccess();
+                }
+            });
+            
+            request.fail(function( jqXHR, textStatus ) {
+                alert( "Request failed: " + textStatus );
+            });
+        } else {
+            alert ('số hàng không đủ')
+        }
+
         
-        request.fail(function( jqXHR, textStatus ) {
-            alert( "Request failed: " + textStatus );
-        });
     };
 
     </script>

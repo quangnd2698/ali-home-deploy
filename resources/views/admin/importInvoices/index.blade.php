@@ -15,7 +15,7 @@
         </div>
         <div class="col-md-6 text-right row">
             @can('isAdmin')
-                <button type="button" class="btn btn-primary col-2" style="margin-right: 15px" id="text">
+                {{-- <button type="button" class="btn btn-primary col-2" style="margin-right: 15px" id="text">
                     <i class="icon-copy fi-upload"></i>
                     Import
                 </button>
@@ -31,7 +31,7 @@
                     data-target="#warning-modal">
                     <span class="icon-copy fa fa-minus "></span>
                     Xóa nhiều
-                </button>
+                </button> --}}
             @endcan
         </div>
     </div>
@@ -41,10 +41,10 @@
         <thead style="background-color: #FFCC33">
             <tr>
                 <th>
-                    <div class="dt-checkbox">
+                    {{-- <div class="dt-checkbox">
                         <input type="checkbox" name="select_all" value="1" id="example-select-all">
                         <span class="dt-checkbox-label"></span>
-                    </div>
+                    </div> --}}
                 </th>
                 <th>Mã phiếu</th>
                 <th>Nhân viên</th>
@@ -58,8 +58,8 @@
             @foreach ($importInvoices as $key => $importInvoice)
                 <tr>
                     <td>
-                        <div class="dt-checkbox"><input type="checkbox" name="checkbox-{{ $importInvoice->id }}"
-                            value=""><span class="dt-checkbox-label"></span></div>
+                        {{-- <div class="dt-checkbox"><input type="checkbox" name="checkbox-{{ $importInvoice->id }}"
+                            value=""><span class="dt-checkbox-label"></span></div> --}}
                     </td>
                     <td>{{ $importInvoice->invoice_code }}</td>
                     <td>{{ $importInvoice->staff_make }}</td>

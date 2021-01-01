@@ -115,6 +115,7 @@ h4 {
                     </div>
                     @endif
                 </form>
+                <div class="text-center">Chưa có tài khoản <a href="{{route('users.sign_up')}}">Đăng ký</a></div>
             </div>
         </div>
     {{-- </div> --}}

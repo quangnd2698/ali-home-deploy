@@ -44,9 +44,6 @@
                                             Cam kết chịu trách nhiệm lâu dài đối với các sản phẩm do trung tâm cung
                                             cấp.
                                         </li>
-                                        {{-- <li>Google maps, Forms, Megamenu, CSS3 Animations
-                                            and much more</li>
-                                        <li>+ 11 extra pages showing template features</li> --}}
                                     </ul>
                                 </div>
                             </div>
@@ -135,7 +132,7 @@
                         <h3 style="margin-left: 5%; font-family: cursive">Sản phẩm mới nhất</h3>
                     </div>
                     <div class="col-6 heading text-right">
-                        <a href=""><h6>Xem tất cả >></h6></a>
+                        <a href="{{ route('client.products', 'ceramic?type=all') }}"><h6>Xem tất cả >></h6></a>
                     </div>
                 </div>
                 
@@ -318,7 +315,7 @@
             <!-- Carousel End-->
         </div> --}}
 
-        <br>
+        {{-- <br>
         <div class="col-12 row">
             <div  style="width: 10%"></div>
             <div class="col-10 card" style="padding: 10px 10px 10px 10px">
@@ -332,7 +329,6 @@
                 </div>
                 <div id="carousel-example-multi-2" class="carousel slide carousel-multi-item v-2 product-carousel"
                     data-ride="carousel">
-                    <!-- Indicators -->
                     <ol class="carousel-indicators">
                         <li data-target="#carousel-example-multi-2" data-slide-to="0" class="active"></li>
                         <li data-target="#carousel-example-multi-2" data-slide-to="1"></li>
@@ -344,7 +340,6 @@
                         <li data-target="#carousel-example-multi-2" data-slide-to="7"></li>
                         <li data-target="#carousel-example-multi-2" data-slide-to="8"></li>
                     </ol>
-                    <!--/.Indicators-->
                     <div class="row col-12">
                         <div class="col" style="width: 10px; padding: 0 0 0 0">
                         <a class="btn-floating btn-sm" href="#carousel-example-multi-2" data-slide="prev" style="margin-top: 175px">
@@ -384,8 +379,6 @@
                                             </p>
                                             <a href="{{route('client.product_details', $product->id)}}" style="font-size: 12px"
                                                 class="btn btn-default col-2">Xem</a>
-                                            {{-- <a href="shop-basket.html" style="font-size: 12px"
-                                                class="btn btn-success"><i class="fa fa-shopping-cart"></i>Thêm</a> --}}
                                         </div>
                                         <div class="ribbon-holder">
                                             <div class="ribbon hot" style="text-align: left;width: 40px;"><small
@@ -407,9 +400,7 @@
 
             </div>
             <div class="col" style="width: 5%"></div>
-
-            <!-- Carousel End-->
-        </div>
+        </div> --}}
 
         {{-- <br>
         <div class="col-12 row">

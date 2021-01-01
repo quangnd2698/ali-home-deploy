@@ -26,7 +26,7 @@ class ProductController extends Controller
      */
     public function index()
     {
-        $products = Product::with('images')->get();
+        $products = Product::with('images')->orderBy('id')->get();
         return view('admin/products/index', ['products' => $products]);
     }
 
@@ -38,8 +38,8 @@ class ProductController extends Controller
     public function create()
     {
         $brands = Brand::query()->get();
-        $models = ProductModel::query()->get();
-        return view('admin/products/create', ['brands' => $brands, 'models' => $models]);
+        // $models = ProductModel::query()->get();
+        return view('admin/products/create', ['brands' => $brands]);
     }
 
     /**
@@ -128,7 +128,7 @@ class ProductController extends Controller
         if (!$success) {
             return redirect()->route('products.index')->withErrors($errors);
         }
-        alert()->success('Xóa phiếu', 'thành công');
+        alert()->success('Xóa', 'thành công');
         return redirect()->route('products.index');
         // }
         // return redirect()->to('403');

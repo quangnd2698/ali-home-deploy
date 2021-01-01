@@ -20,10 +20,10 @@
                         <i class="icon-copy fi-upload"></i>
                         Import
                     </button> --}}
-                    <button type="button" class="btn btn-outline-info col-3" style="margin-right: 15px">
+                    {{-- <button type="button" class="btn btn-outline-info col-3" style="margin-right: 15px">
                         <i class="icon-copy fi-download"></i>
                         Xuất file
-                    </button>
+                    </button> --}}
                 @endcan
             </div>
         </div>
@@ -31,7 +31,9 @@
 
     <div class="row">
 
-        <div class="col-10 card-box" style="overflow-y: auto; height: 750px">
+        <div class="col-12 card-box" 
+        {{-- style="overflow-y: auto; height: 750px" --}}
+        >
             <br>
             <table class="checkbox-datatable table table-hover nowrap" style="width: 100%; background-color: #CCFFFF">
                 <thead style="background-color: #FFCC33">
@@ -74,7 +76,7 @@
                 </tbody>
             </table>
         </div>
-        <div class="col-2 row" >
+        {{-- <div class="col-2 row" >
             <div class="col-12" style="position: fixed">
                 <div class="col-12" >
                     <div class="card-box" style="width: 13%;">
@@ -146,7 +148,7 @@
                     </div>
                 </div>
 
-            </div>
+            </div> --}}
         </div>
     </div>
 
@@ -159,7 +161,7 @@
         <div class="modal-dialog modal-xl modal-dialog-centered" >
             <div class="modal-content">
                 <div class="modal-header">
-                    <h4 class="modal-title" id="myLargeModalLabel">Large modal</h4>
+                    <h4 class="modal-title" id="myLargeModalLabel">Thông Tin khách hàng</h4>
                     <button type="button" class="close" data-dismiss="modal" aria-hidden="true">×</button>
                 </div>
                 <div class="modal-body">
@@ -201,10 +203,10 @@
                                     <div class="tab">
                                         <ul class="nav nav-tabs" role="tablist">
                                             <li class="nav-item">
-                                                <a class="nav-link active text-blue" data-toggle="tab" href="#profile-{{$user->id}}" role="tab" aria-selected="true">Profile</a>
+                                                <a class="nav-link active text-blue" data-toggle="tab" href="#profile-{{$user->id}}" role="tab" aria-selected="true">Thông tin</a>
                                             </li>
                                             <li class="nav-item">
-                                                <a class="nav-link text-blue" data-toggle="tab" href="#contact-{{$user->id}}" role="tab" aria-selected="false">Contact</a>
+                                                <a class="nav-link text-blue" data-toggle="tab" href="#contact-{{$user->id}}" role="tab" aria-selected="false">Hóa đơn</a>
                                             </li>
                                         </ul>
                                         <div class="tab-content">

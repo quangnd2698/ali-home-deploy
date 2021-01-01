@@ -5,7 +5,7 @@
 @section('content')
 <div class="page-header">
     <div class="row">
-        <div class="col-md-6 col-sm-12">
+        <div class="col-md-8 col-sm-12">
             <nav aria-label="breadcrumb" role="navigation">
                 <ol class="breadcrumb">
                     <li class="breadcrumb-item"><a href="index.php">Home</a></li>
@@ -13,27 +13,27 @@
                 </ol>
             </nav>
         </div>
-        <div class="col-md-6 text-right row">
+        <div class="col-md-4 text-right row">
             @can('isAdmin')
-                <button type="button" class="btn btn-primary col-2" style="margin-right: 15px" id="text">
+                {{-- <button type="button" class="btn btn-primary col-2" style="margin-right: 15px" id="text">
                     <i class="icon-copy fi-upload"></i>
                     Import
                 </button>
                 <button type="button" class="btn btn-outline-info col-3" style="margin-right: 15px">
                     <i class="icon-copy fi-download"></i>
                     Xuất file
-                </button>
-                <a href=" {{route('invoices.create') }}" class="btn btn-success col-2" style="margin-right: 15px">
+                </button> --}}
+                <a href=" {{route('invoices.create') }}" class="btn btn-success col-5" style="margin-right: 15px">
                     {{-- <button type="button" class="btn btn-success col-12"> --}}
                         <span class="icon-copy ti-plus"></span>
                         Thêm
                     {{-- </button> --}}
                 </a>
-                <button type="button" id="delete_more" class="btn btn-danger col-3" data-toggle="modal"
+                {{-- <button type="button" id="delete_more" class="btn btn-danger col-3" data-toggle="modal"
                     data-target="#warning-modal">
                     <span class="icon-copy fa fa-minus "></span>
                     Xóa nhiều
-                </button>
+                </button> --}}
             @endcan
         </div>
     </div>
@@ -43,10 +43,10 @@
             <thead style="background-color: #FFCC33">
                 <tr>
                     <th>
-                        <div class="dt-checkbox">
+                        {{-- <div class="dt-checkbox">
                             <input type="checkbox" name="select_all" value="1" id="example-select-all">
                             <span class="dt-checkbox-label"></span>
-                        </div>
+                        </div> --}}
                     </th>
                     <th>Mã phiếu</th>
                     <th>khách hàng</th>
@@ -59,8 +59,8 @@
                 @foreach ($invoices as $key => $invoice)
                     <tr>
                         <td>
-                            <div class="dt-checkbox"><input type="checkbox" name="checkbox-{{ $invoice->id }}"
-                                    value=""><span class="dt-checkbox-label"></span></div>
+                            {{-- <div class="dt-checkbox"><input type="checkbox" name="checkbox-{{ $invoice->id }}"
+                                    value=""><span class="dt-checkbox-label"></span></div> --}}
                         </td>
                         <td>{{ $invoice->invoice_code }}</td>
                         <td>{{ $invoice->customer_name }}</td>

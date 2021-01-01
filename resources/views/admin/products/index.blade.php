@@ -6,7 +6,7 @@
 
 <div class="page-header">
     <div class="row">
-        <div class="col-md-6 col-sm-12">
+        <div class="col-md-8 col-sm-12">
             <nav aria-label="breadcrumb" role="navigation">
                 <ol class="breadcrumb">
                     <li class="breadcrumb-item"><a href="index.php">Home</a></li>
@@ -14,23 +14,23 @@
                 </ol>
             </nav>
         </div>
-        <div class="col-md-6 text-right row">
+        <div class="col-md-4 text-right row">
             @can('isAdmin')
-                <button type="button" class="btn btn-primary col-2" style="margin-right: 15px" id="text">
+                {{-- <button type="button" class="btn btn-primary col-2" style="margin-right: 15px" id="text">
                     <i class="icon-copy fi-upload"></i>
                     Import
                 </button>
                 <button type="button" class="btn btn-outline-info col-3" style="margin-right: 15px">
                     <i class="icon-copy fi-download"></i>
                     Xuất file
-                </button>
-                <a href=" {{route('products.create') }}" class="btn btn-success col-2" style="margin-right: 15px">
+                </button> --}}
+                <a href=" {{route('products.create') }}" class="btn btn-success col-5" style="margin-right: 15px">
                     {{-- <button type="button" class="btn btn-success col-12"> --}}
                         <span class="icon-copy ti-plus"></span>
                         Thêm
                     {{-- </button> --}}
                 </a>
-                <button type="button" id="delete_more" class="btn btn-danger col-3" data-toggle="modal"
+                <button type="button" id="delete_more" class="btn btn-danger col-6" data-toggle="modal"
                     data-target="#warning-modal">
                     <span class="icon-copy fa fa-minus "></span>
                     Xóa nhiều
@@ -42,7 +42,9 @@
 
     <div class="row">
 
-        <div class="col-10 card-box" style="overflow-y: auto; height: 750px">
+        <div class="col-12 card-box" 
+        {{-- style="overflow-y: auto; height: 750px" --}}
+        >
             <br>
             <table class="checkbox-datatable table table-hover nowrap" style="width: 100%; background-color: #CCFFFF">
                 <thead style="background-color: #FFCC33">
@@ -58,6 +60,7 @@
                         <th>Tên sản phẩm</th>
                         <th>Giá Bán</th>
                         <th>Tồn Kho</th>
+                        <th>Trạng thái</th>
                         <th style="width: 100px;">action</th>
                     </tr>
                 </thead>
@@ -73,6 +76,7 @@
                             <td>{{ $product->product_name }} </td>
                             <td>{{ number_format($product->sale_price, 0, ',', ' ') }}</td>
                             <td>{{ $product->quantity }}</td>
+                            <td id="status-{{$product->id}}">{{ $product->status }}</td>
                             <td class="row" style="width: 100px;">
                                 <div class="col-4">
                                     <a  data-toggle="modal" class="btn btn-primary" style="padding: 0px 5px 0px 5px"
@@ -102,7 +106,7 @@
                 </tbody>
             </table>
         </div>
-        <div class="col-2 row" >
+        {{-- <div class="col-2 row" >
             <div class="col-12" style="position: fixed">
                 <div class="col-12" >
                     <div class="card-box" style="width: 13%;">
@@ -169,7 +173,7 @@
                 </div>
 
             </div>
-        </div>
+        </div> --}}
     </div>
 
 
@@ -485,9 +489,9 @@
                                 Xóa
                             </button>
                         </a>
-                        <button type="button"  id="nkd" class="btn" onclick="changeStatusProduct({{$product->id}})" data-bgcolor="#FF6666" data-color="#ffffff"
+                        <button type="button"  id="nkd-{{$product->id}}" class="btn" onclick="changeStatusProduct({{$product->id}})" data-bgcolor="#FF6666" data-color="#ffffff"
                             style="color: rgb(255, 255, 255); background-color: #FF3333;">
-                            <i class="icon-copy fa fa-lock" id="nkd" aria-hidden="true"></i> 
+                            <i class="icon-copy fa fa-lock" aria-hidden="true"></i> 
                             @if ($product->status == 'active')
                                 {{'Ngừng kinh doanh'}}
                             @else
@@ -583,7 +587,7 @@
             });
             data = data.substring(1);
             $('input[name = "checkbox_selected"]').val(data);
-            alert(data);
+            // alert(data);
         });
 
         function changeStatusProduct(id) {
@@ -597,7 +601,10 @@
             });
 
             request.done(function( data ) {
-                $("#nkd").text(data);
+                // alert(JSON.parse(data).status)/
+                $("#nkd-"+ id).text(JSON.parse(data).result);
+                
+                $("#status-"+ id).text(JSON.parse(data).status);
             });
             
             request.fail(function( jqXHR, textStatus ) {

@@ -15,7 +15,7 @@
         </div>
         <div class="col-md-6 text-right row">
             @can('isAdmin')
-                <button type="button" class="btn btn-primary col-2" style="margin-right: 15px" id="text">
+                {{-- <button type="button" class="btn btn-primary col-2" style="margin-right: 15px" id="text">
                     <i class="icon-copy fi-upload"></i>
                     Import
                 </button>
@@ -27,7 +27,7 @@
                     data-target="#warning-modal">
                     <span class="icon-copy fa fa-minus "></span>
                     Xóa nhiều
-                </button>
+                </button> --}}
             @endcan
         </div>
     </div>
@@ -42,12 +42,12 @@
         <thead style="background-color: #FFCC33">
             {{-- <thead style="background-color: #FFFFCC"> --}}
                 <tr>
-                    <th>
-                        <div class="dt-checkbox">
+                    {{-- <th> --}}
+                        {{-- <div class="dt-checkbox">
                             <input type="checkbox" name="select_all" value="1" id="example-select-all">
                             <span class="dt-checkbox-label"></span>
-                        </div>
-                    </th>
+                        </div> --}}
+                    {{-- </th> --}}
                     <th>id</th>
                     <th>Tên khách hàng</th>
                     {{-- <th>Địa chỉ</th> --}}
@@ -62,7 +62,9 @@
                     @foreach($orders as $key => $order)
                     @if ($order->order_status == 1)
                     <tr>
-                        <td><div class="dt-checkbox"><input type="checkbox" name="checkbox-{{$order->id}}" value=""><span class="dt-checkbox-label"></span></div></td>
+                        {{-- <td>
+                            <div class="dt-checkbox"><input type="checkbox" name="checkbox-{{$order->id}}" value=""><span class="dt-checkbox-label"></span></div>
+                        </td> --}}
                         <td style="font-size: 15px" >{{ $order->id }}</td>
                         <td style="font-size: 15px">{{ $order->customer_name }}</td>
                         {{-- <td style="font-size: 15px">{{ $order->customer_address}}</td> --}}
@@ -101,12 +103,12 @@
         <thead style="background-color: #FFCC33">
             {{-- <thead style="background-color: #FFFFCC"> --}}
                 <tr>
-                    <th>
+                    {{-- <th>
                         <div class="dt-checkbox">
                             <input type="checkbox" name="select_all" value="1" id="example-select-all">
                             <span class="dt-checkbox-label"></span>
                         </div>
-                    </th>
+                    </th> --}}
                     <th>id</th>
                     <th>Tên khách hàng</th>
                     {{-- <th>Địa chỉ</th> --}}
@@ -121,7 +123,7 @@
                     @foreach($orders as $key => $order)
                     @if ($order->order_status == 2)
                     <tr>
-                        <td><div class="dt-checkbox"><input type="checkbox" name="checkbox-{{$order->id}}" value=""><span class="dt-checkbox-label"></span></div></td>
+                        {{-- <td><div class="dt-checkbox"><input type="checkbox" name="checkbox-{{$order->id}}" value=""><span class="dt-checkbox-label"></span></div></td> --}}
                         <td style="font-size: 15px" >{{ $order->id }}</td>
                         <td style="font-size: 15px">{{ $order->customer_name }}</td>
                         {{-- <td style="font-size: 15px">{{ $order->customer_address}}</td> --}}
@@ -162,12 +164,12 @@
         <thead style="background-color: #FFCC33">
             {{-- <thead style="background-color: #FFFFCC"> --}}
                 <tr>
-                    <th>
+                    {{-- <th>
                         <div class="dt-checkbox">
                             <input type="checkbox" name="select_all" value="1" id="example-select-all">
                             <span class="dt-checkbox-label"></span>
                         </div>
-                    </th>
+                    </th> --}}
                     <th>id</th>
                     <th>Tên khách hàng</th>
                     {{-- <th>Địa chỉ</th> --}}
@@ -182,7 +184,7 @@
                     @foreach($orders as $key => $order)
                     @if ($order->order_status == 3)
                     <tr>
-                        <td><div class="dt-checkbox"><input type="checkbox" name="checkbox-{{$order->id}}" value=""><span class="dt-checkbox-label"></span></div></td>
+                        {{-- <td><div class="dt-checkbox"><input type="checkbox" name="checkbox-{{$order->id}}" value=""><span class="dt-checkbox-label"></span></div></td> --}}
                         <td style="font-size: 15px" >{{ $order->id }}</td>
                         <td style="font-size: 15px">{{ $order->customer_name }}</td>
                         {{-- <td style="font-size: 15px">{{ $order->customer_address}}</td> --}}

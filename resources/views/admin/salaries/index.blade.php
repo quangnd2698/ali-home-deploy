@@ -15,7 +15,7 @@
         </div>
         <div class="col-md-6 text-right row">
             @can('isAdmin')
-                <button type="button" class="btn btn-primary col-2" style="margin-right: 15px" id="text">
+                {{-- <button type="button" class="btn btn-primary col-2" style="margin-right: 15px" id="text">
                     <i class="icon-copy fi-upload"></i>
                     Import
                 </button>
@@ -27,7 +27,7 @@
                     data-target="#warning-modal">
                     <span class="icon-copy fa fa-minus "></span>
                     Xóa nhiều
-                </button>
+                </button> --}}
             @endcan
         </div>
     </div>
@@ -39,12 +39,12 @@
             <table class="checkbox-datatable table table-hover nowrap" style="width: 100%; background-color: #CCFFFF">
                 <thead style="background-color: #FFCC33">
                     <tr>
-                        <th>
+                        {{-- <th>
                             <div class="dt-checkbox">
                                 <input type="checkbox" name="select_all" value="1" id="example-select-all">
                                 <span class="dt-checkbox-label"></span>
                             </div>
-                        </th>
+                        </th> --}}
                         <th>Mã</th>
                         <th>Tổng Chi Phí</th>
                         <th>Tháng</th>
@@ -57,7 +57,7 @@
                     @if (count($salaries) > 0)
                         @foreach($salaries as $key => $salary)
                         <tr>
-                            <td><div class="dt-checkbox"><input type="checkbox" name="checkbox-{{$salary->id}}" value=""><span class="dt-checkbox-label"></span></div></td>
+                            {{-- <td><div class="dt-checkbox"><input type="checkbox" name="checkbox-{{$salary->id}}" value=""><span class="dt-checkbox-label"></span></div></td> --}}
                             <td>{{ $salary->salary_code }}</td>
                             <td>{{ number_format($salary->total_cost, 0, ',', ',') }}</td>
                             <td>{{ $salary->month }}</td>

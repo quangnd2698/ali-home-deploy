@@ -26,14 +26,13 @@ Route::get('403', function () {
 
 Route::get('admin/login', function(){
     return view('auth/login');
-})->name('login');
+})->name('admin.login');
 Route::post('sign_in', 'LoginController@authenticate')->name('sign_in');
 
 Route::middleware('adminLogin')->prefix('admin')->group(function () {
     Route::get('home', 'HomeController@index')->name('home');
     Route::get('logout','LoginController@logout')->name('logout');
 
-    // Route::post('login', 'AdminController@adminLogin');
     Route::resource('admins', 'AdminController');
     Route::post('admins/delete_more', 'AdminController@deleteMore')->name('admins.delete_more')->middleware('can:isAdmin');
     Route::get('admins/profile/{id}', 'AdminController@getProfile')->name('admins.profile');
@@ -85,6 +84,7 @@ Route::get('ajax/product_models/create', 'AjaxController@storeProductModel');
 Route::get('ajax/brands/create', 'AjaxController@storeBrand');
 Route::get('ajax/changeStatus', 'AjaxController@changeStatus');
 Route::get('ajax/changeOrderStatus', 'AjaxController@changeOrderStatus');
+Route::get('ajax/check_quantity', 'AjaxController@checkQuantityCart');
 
 Route::get('sender', function ()
 {

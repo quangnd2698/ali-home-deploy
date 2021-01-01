@@ -101,20 +101,33 @@ class AjaxController extends Controller
     {
         $product = Product::findOrFail($request->id);
         $result = '';
+        // $status = '';
         if ($product->status === 'active') {
             $product->status = 'off';
             $result = 'Kinh Doanh';
+            // $status = 'off';
         } else {
             $product->status = 'active';
             $result = 'Ngừng Kinh Doanh';
         }
         $product->save();
-        return $result;
+        $data = [
+            'result' => $result,
+            'status' => $product->status,
+        ];
+        return response()->json($data);
+        // return [$result, $product->status];
     }
 
     public function changeOrderStatus(Request $request)
     {
         $result = $this->ajaxService->changeOrderStatus($request->all());
         return $result ? true : false;
+    }
+
+    public function checkQuantityCart(Request $request)
+    {
+        $result = $this->ajaxService->checkQuantity($request->id, $request->quantity) ;
+        return $result;
     }
 }

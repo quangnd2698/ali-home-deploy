@@ -6,7 +6,7 @@
 
     <div class="page-header">
         <div class="row">
-            <div class="col-md-6 col-sm-12">
+            <div class="col-md-8 col-sm-12">
                 <nav aria-label="breadcrumb" role="navigation">
                     <ol class="breadcrumb">
                         <li class="breadcrumb-item"><a href="index.php">Home</a></li>
@@ -14,19 +14,15 @@
                     </ol>
                 </nav>
             </div>
-            <div class="col-md-6 text-right row">
+            <div class="col-md-4 text-right row">
                 @can('isAdmin')
-                    <button type="button" class="btn btn-outline-info col-3" style="margin-right: 15px">
-                        <i class="icon-copy fi-download"></i>
-                        Xuất file
-                    </button>
-                    <a href=" {{ route('admins.create') }}" class="btn btn-success col-2" style="margin-right: 15px">
+                    <a href=" {{ route('admins.create') }}" class="btn btn-success col-5" style="margin-right: 15px">
                         {{-- <button type="button" class="btn btn-success col-12"> --}}
                             <span class="icon-copy ti-plus"></span>
                             Thêm
                         {{-- </button> --}}
                     </a>
-                    <button type="button" id="delete_more" class="btn btn-danger col-3" data-toggle="modal"
+                    <button type="button" id="delete_more" class="btn btn-danger col-6" data-toggle="modal"
                         data-target="#warning-modal">
                         <span class="icon-copy fa fa-minus "></span>
                         Xóa nhiều

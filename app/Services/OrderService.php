@@ -9,6 +9,8 @@ use App\Models\Product;
 use Illuminate\Support\Facades\DB;
 use App\Events\MessageSent;
 use App\Models\OrderDetail;
+use Illuminate\Support\Facades\Auth;
+use App\Models\Cart;
 
 class OrderService implements OrderServiceInterface
 {
@@ -35,8 +37,6 @@ class OrderService implements OrderServiceInterface
 
     public function storeOrder($params)
     {
-        // $param = $request->all();
-        // dd($params);
         $address = $params['customer_address']. ' ' . $params['ward'] . ' ' . $params['district'] . ' ' . $params['province'];
         $params['customer_address'] = $address;
         $params['order_status'] = 1;
@@ -46,7 +46,25 @@ class OrderService implements OrderServiceInterface
         }
         \DB::beginTransaction();
         $order = Order::create($params);
-        if(isset($_COOKIE['cart_product'])) {
+        if (Auth::guard('web')->check()) {
+            $carts = Cart::with('product')->where('user_id', Auth::guard('web')->id());
+            try {
+                foreach ($carts as $key => $cart) {
+                    $dataOrder['order_id'] = $order->id;
+                    $dataOrder['product_code'] = $cart->product->product_code;
+                    $dataOrder['product_name'] = $cart->product_name;
+                    $dataOrder['quantity_product'] = $cart->quantity;
+                    $dataOrder['price_product'] = $cart->price;
+                    $dataOrder['total_price'] = $cart->total_price;
+                    $orderDetail = OrderDetail::create($dataOrder);
+                    $orderDetail->product->quantity = $orderDetail->product->quantity - $dataOrder['quantity_product'];
+                    $orderDetail->product->save();
+                }
+            } catch (Exception $e) {
+                \DB::rollBack();
+                return [false, $e->getMessage()];
+            }
+        } else if(isset($_COOKIE['cart_product'])) {
             $data = explode(",", $_COOKIE['cart_product']);
             unset($data[0]);
             array_pop($data);
@@ -54,22 +72,22 @@ class OrderService implements OrderServiceInterface
 
             try {
                 foreach ($products as $key => $product) {
-                    $data['order_id'] = $order->id;
-                    $data['product_code'] = $product->product_code;
-                    $data['product_name'] = $product->product_name;
-                    $data['quantity_product'] = $_COOKIE['count_product-' . $product->id];
-                    $data['price_product'] = $product->sale_price;
-                    $data['total_price'] = $product->sale_price *  $data['quantity_product'];
-                    $orderDetail = OrderDetail::create($data);
-                    $orderDetail->product->quantity = $orderDetail->product->quantity - $data['quantity_product'];
-                    $orderDetail->product->save();
+                    $dataOrder['order_id'] = $order->id;
+                    $dataOrder['product_code'] = $product->product_code;
+                    $dataOrder['product_name'] = $product->product_name;
+                    $dataOrder['quantity_product'] = $_COOKIE['count_product-' . $product->id];
+                    $dataOrder['price_product'] = $product->sale_price;
+                    $dataOrder['total_price'] = $product->sale_price *  $dataOrder['quantity_product'];
+                    $orderDetail = OrderDetail::create($dataOrder);
+                    $product->quantity = $orderDetail->product->quantity - $dataOrder['quantity_product'];
+                    $product->save();
                 }
             } catch (Exception $e) {
                 \DB::rollBack();
                 return [false, $e->getMessage()];
             }
         }
-
+        $carts->delete();
         \DB::commit();        
         
         $notification['name'] = $params['customer_name'];

@@ -593,7 +593,7 @@
 
     // $.cookie("cart_product",",",{ expires: 7, path: '/' });
     function addToCart(id) {
-        alert(checkQuantity());
+        // alert(checkQuantity());
         if (checkQuantity() == true) {
             var listProduct = $.cookie("cart_product");
             var count = $('input[name="count_product"]').val();

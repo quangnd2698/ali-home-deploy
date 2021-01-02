@@ -48,6 +48,8 @@ class ClientPageController extends Controller
             ->orWhere('product_type', $product->product_type);
         $similarProducts = $similarProducts->where('sale_price', '<', $product->sale_price + 30000)
             ->Where('sale_price', '>', $product->sale_price - 30000)->take(10)->get();
+        $product->count_view = $product->count_view + 1;
+        $product->save();
         return view('client/product_detail', compact('product'), compact('similarProducts'));
     }
 

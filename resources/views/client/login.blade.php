@@ -28,7 +28,7 @@
         /*author:starttemplate*/
 /*reference site : starttemplate.com*/
 body {
-  /* background-image:url('https://i.redd.it/o8dlfk93azs31.jpg'); */
+  background-image:url('client/background.jpg');
   background-position:center;
   background-size:cover;
   

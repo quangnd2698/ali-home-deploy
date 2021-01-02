@@ -15,7 +15,6 @@ class ClientPageService implements ClientPageServiceInterface
     public function getProducts($params, $request)
     {   
         $products  = Product::where('status', 'active');
-        dd($products->where('product_code', 'SP1483')->get());
         $data = explode(',', $params);
         $brands = Brand::query();
 
@@ -78,9 +77,9 @@ class ClientPageService implements ClientPageServiceInterface
             case 'cao-thap':
                 $products = $products->orderBy('sale_price', 'desc');
                 break;
-            case 'ban-chay-nhat':
-                $products = $products->orderBy('count_buy', 'desc');
-                break;
+            // case 'ban-chay-nhat':
+            //     $products = $products->orderBy('count_buy', 'desc');
+            //     break;
             default:
                 $products = $products->orderBy('created_at', 'desc');
                 break;

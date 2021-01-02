@@ -108,8 +108,8 @@
                     class="fa fa-align-justify"></i></button>
             <div id="navigation" class="navbar-collapse collapse" style="height: 55px">
                 <ul class="nav navbar-nav ml-auto">
-                    <li class="nav-item dropdown"><a href="{{route('client.home')}}"
-                            class="dropdown-toggle">Home <b class="caret"></b></a>
+                    <li class="nav-item "><a href="{{route('client.home')}}"
+                            class="">Home <b class="caret"></b></a>
                     </li>
                     <li class="nav-item dropdown menu-large"><a href="#" data-toggle="dropdown"
                         class="dropdown-toggle">Sản phẩm<b class="caret"></b></a>

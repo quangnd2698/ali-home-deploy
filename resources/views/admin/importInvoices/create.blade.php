@@ -159,11 +159,11 @@
 <script src="src/avatar.js"></script>
 <script>
 
-    $.cookie("list_product_selected", { path: '/admin/importInvoices' });
+    $.cookie("list_product_selected", { path: '/admin/importInvoices/create' });
     function addProduct(data) {
         var count = $('#count_product').val();
         var listProductSelected = $.cookie("list_product_selected") ?? null;
-        alert(JSON.stringify(listProductSelected));
+        // alert(JSON.stringify(listProductSelected));
         if (listProductSelected.indexOf(data.id) == -1) {
 
             listProductSelected += ','
@@ -174,7 +174,7 @@
             $('#table_import_body').append(text);
             $('#count_product').val(count);
             totalPrice(data.id);
-            $.cookie("list_product_selected", listProductSelected, { path: '/admin/importInvoices' });
+            $.cookie("list_product_selected", listProductSelected, { path: '/admin/importInvoices/create' });
         
         }
 
@@ -182,7 +182,7 @@
 
     $('#sub').click(function(){
         
-        $.removeCookie("list_product_selected", { path: '/admin/importInvoices' });
+        $.removeCookie("list_product_selected", { path: '/admin/importInvoices/create' });
     });
 
     $(document).ready(function($) {

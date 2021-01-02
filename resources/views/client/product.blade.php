@@ -165,7 +165,7 @@
                                     <option selected value="new">Mới nhất</option>
                                     <option value="thap-cao">Giá thấp đến cao</option>
                                     <option value="cao-thap">Giá cao đến thấp</option>
-                                    <option value="ban-chay-nhat">Bán chạy nhất</option>
+                                    {{-- <option value="ban-chay-nhat">Bán chạy nhất</option> --}}
                                 </select>
                             </div>
                             <div class="col-3">

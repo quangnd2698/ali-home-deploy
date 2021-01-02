@@ -14,7 +14,11 @@
             </nav>
         </div>
         <div class="col-md-6 text-right row">
-            @can('isAdmin')
+            {{-- @can('isAdmin') --}}
+            <a href=" {{route('importInvoices.create') }}" class="btn btn-success col-2" style="margin-right: 15px">
+                <span class="icon-copy ti-plus"></span>
+                Thêm
+            </a>
                 {{-- <button type="button" class="btn btn-primary col-2" style="margin-right: 15px" id="text">
                     <i class="icon-copy fi-upload"></i>
                     Import
@@ -23,16 +27,13 @@
                     <i class="icon-copy fi-download"></i>
                     Xuất file
                 </button>
-                <a href=" {{route('importInvoices.create') }}" class="btn btn-success col-2" style="margin-right: 15px">
-                    <span class="icon-copy ti-plus"></span>
-                    Thêm
-                </a>
+               
                 <button type="button" id="delete_more" class="btn btn-danger col-3" data-toggle="modal"
                     data-target="#warning-modal">
                     <span class="icon-copy fa fa-minus "></span>
                     Xóa nhiều
                 </button> --}}
-            @endcan
+            {{-- @endcan --}}
         </div>
     </div>
 </div>

@@ -28,12 +28,12 @@ class InvoiceDetail extends Model
 
     public function getProductTypeAttribute()
     {
-        return Product::where('product_code', $this->product_code)->first()->product_type;
+        return Product::where('product_code', $this->product_code)->first()->product_type ?? null;
     }
 
     public function getTypeCodeAttribute()
     {
-        return Product::where('product_code', $this->product_code)->first()->type_code;
+        return Product::where('product_code', $this->product_code)->first()->type_code ?? null;
     }
 
 }

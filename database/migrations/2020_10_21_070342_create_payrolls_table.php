@@ -15,7 +15,7 @@ class CreatePayrollsTable extends Migration
     {
         Schema::create('payrolls', function (Blueprint $table) {
             $table->id();
-            $table->smallInteger('staff_id');
+            $table->unsignedBigInteger('staff_id');
             $table->integer('basic_salary');
             $table->timestamps();
         });

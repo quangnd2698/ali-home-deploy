@@ -11,16 +11,16 @@ class CreatePointsTable extends Migration
      *
      * @return void
      */
-    public function up()
-    {
-        Schema::create('points', function (Blueprint $table) {
-            $table->increments('id');
-            $table->smallInteger('user_id');
-            $table->smallInteger('product_id');
-            $table->smallInteger('point');
-            $table->timestamps();
-        });
-    }
+    // public function up()
+    // {
+    //     Schema::create('points', function (Blueprint $table) {
+    //         $table->increments('id');
+    //         $table->smallInteger('user_id');
+    //         $table->smallInteger('product_id');
+    //         $table->smallInteger('point');
+    //         $table->timestamps();
+    //     });
+    // }
 
     /**
      * Reverse the migrations.

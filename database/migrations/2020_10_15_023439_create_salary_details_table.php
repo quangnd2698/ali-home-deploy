@@ -16,7 +16,7 @@ class CreateSalaryDetailsTable extends Migration
         Schema::create('salary_details', function (Blueprint $table) {
             $table->id();
             $table->string('salary_code',15);
-            $table->integer('admin_id');
+            $table->unsignedBigInteger('admin_id');
             $table->string('staff_name');
             $table->integer('basic_salary');
             $table->smallInteger('salary_type')->nullable();

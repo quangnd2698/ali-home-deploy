@@ -15,7 +15,7 @@ class CreateAttendancesTable extends Migration
     {
         Schema::create('attendances', function (Blueprint $table) {
             $table->id();
-            $table->integer('staff_id');
+            $table->unsignedBigInteger('staff_id');
             $table->string('month');
             $table->string('attendance_code');
             $table->string('day_1',2)->nullable();

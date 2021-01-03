@@ -15,7 +15,7 @@ class CreateAccumulatePointsTable extends Migration
     {
         Schema::create('accumulate_points', function (Blueprint $table) {
             $table->increments('id');
-            $table->string('customer_phone');
+            $table->integer('customer_phone');
             $table->string('name')->nullable();
             $table->integer('point');
             $table->string('rank');

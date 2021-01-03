@@ -224,10 +224,8 @@
 
         function changeQuantity(id)
         {
-        //    / var quantity = $('input[name="quantity_product-'+id+'"]').val();
             checkQuantity(id, $('input[name="quantity_product-'+id+'"]').val());
             var quantityNew = $('input[name="quantity_product-'+id+'"]').val();
-            alert(quantityNew)
             $.cookie("count_product-"+id, quantityNew,{ expires: 7, path: '/' });
             loadPrice(id);
         }
@@ -250,8 +248,6 @@
 
         function changeCartAuth( product, id, action)
         {
-            
-            // var quantity = $('input[name="quantity_product-'+product+'"]').val();
             checkQuantity(product, $('input[name="quantity_product-'+product+'"]').val());
             var quantity = $('input[name="quantity_product-'+product+'"]').val();
             var request = $.ajax({

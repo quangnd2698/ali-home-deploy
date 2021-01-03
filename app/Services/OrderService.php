@@ -64,6 +64,8 @@ class OrderService implements OrderServiceInterface
                 \DB::rollBack();
                 return [false, $e->getMessage()];
             }
+
+            $carts->delete();
         } else if(isset($_COOKIE['cart_product'])) {
             $data = explode(",", $_COOKIE['cart_product']);
             unset($data[0]);
@@ -87,7 +89,6 @@ class OrderService implements OrderServiceInterface
                 return [false, $e->getMessage()];
             }
         }
-        $carts->delete();
         \DB::commit();        
         
         $notification['name'] = $params['customer_name'];

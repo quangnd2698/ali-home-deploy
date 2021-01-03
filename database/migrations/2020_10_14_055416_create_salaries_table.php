@@ -15,7 +15,7 @@ class CreateSalariesTable extends Migration
     {
         Schema::create('salaries', function (Blueprint $table) {
             $table->id();
-            $table->string('salary_code',15);
+            $table->string('salary_code',15)->unique();
             $table->string('total_cost');
             $table->string('month');
             $table->text('note')->nullable();

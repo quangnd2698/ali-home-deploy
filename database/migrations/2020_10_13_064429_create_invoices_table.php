@@ -14,12 +14,12 @@ class CreateInvoicesTable extends Migration
     public function up()
     {
         Schema::create('invoices', function (Blueprint $table) {
-            $table->increments('id');
+            $table->bigIncrements('id');
             $table->string('invoice_code');
             $table->string('staff_sale');
             $table->string('introduce_staff')->nullable();
             $table->string('customer_name')->nullable();
-            $table->string('customer_phone')->nullable();
+            $table->integer('customer_phone');
             $table->integer('total_cost');
             $table->string('preferential')->nullable();
             $table->integer('last_cost');
@@ -28,6 +28,7 @@ class CreateInvoicesTable extends Migration
 
             $table->unique('invoice_code');
         });
+
     }
 
     /**

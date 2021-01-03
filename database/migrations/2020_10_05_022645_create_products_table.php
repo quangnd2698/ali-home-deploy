@@ -14,10 +14,10 @@ class CreateProductsTable extends Migration
     public function up()
     {
         Schema::create('products', function (Blueprint $table) {
-            $table->increments('id');
+            $table->bigIncrements('id');
             $table->string('product_code',8);
             $table->string('product_name');
-            $table->string('producer')->nullable();
+            $table->string('producer');
             $table->string('product_type');
             $table->string('size')->nullable();
             $table->string('material')->nullable();
@@ -30,8 +30,6 @@ class CreateProductsTable extends Migration
             $table->integer('sale_price');
             $table->string('type_code')->nullable();
             $table->integer('count_view')->nullable();
-            // $table->integer('count_buy')->nullable();
-            $table->integer('number_error')->nullable();
             $table->string('sale_on_web',8)->nullable();;
             $table->string('status',10);
             $table->text('description')->nullable();

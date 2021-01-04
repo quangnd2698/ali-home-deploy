@@ -17,7 +17,7 @@ class CreateOrdersTable extends Migration
             $table->bigIncrements('id');
             $table->string('customer_name');
             $table->string('customer_address');
-            $table->integer('customer_phone');
+            $table->string('customer_phone');
             $table->integer('total_prices');
             $table->string('preferential')->nullable();
             $table->integer('point_used')->nullable();

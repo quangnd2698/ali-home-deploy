@@ -13,6 +13,7 @@ use App\Models\ProductModel;
 use App\Models\Brand;
 use App\Models\Invoice;
 use App\Models\InvoiceDetail;
+use App\Models\AccumulatePoint;
 
 class AjaxService implements AjaxServiceInterface
 {
@@ -68,6 +69,56 @@ class AjaxService implements AjaxServiceInterface
         return [true];
     }
 
+    public function setAccumulatePoint($customerPhone, int $totalCost, int $pointUsed, $customerName)
+    {
+        $accumulatePoint = AccumulatePoint::where('customer_phone', $customerPhone)->first();
+        if ($accumulatePoint) {
+            $accumulatePoint->point += (ROUND(($totalCost / 10000),0) - $pointUsed);
+            switch (true) {
+                case ($accumulatePoint->point <= 1000):
+                    $accumulatePoint->rank = 'normal';
+                break;
+                case ($accumulatePoint->point > 1000 && $accumulatePoint->point <= 2500):
+                    $accumulatePoint->rank = 'potential';
+                break;
+                case ($accumulatePoint->point > 2500 && $accumulatePoint->point <= 7000):
+                    $accumulatePoint->rank = 'chummy';
+                break;
+                case ($accumulatePoint->point > 7000 && $accumulatePoint->point <= 15000):
+                    $accumulatePoint->rank = 'excellent';
+                break;
+                case ($accumulatePoint->point > 15000): 
+                    $accumulatePoint->rank = 'vip';
+                break;
+                default:
+            }
+            $accumulatePoint->save();
+        } else {
+            $paramAcc['customer_phone'] = $customerPhone;
+            $paramAcc['name'] = $customerName;
+            $paramAcc['point'] = ROUND(($totalCost / 10000),0);
+            switch (true) {
+                case ($paramAcc['point'] <= 1000):
+                    $paramAcc['rank'] = 'normal';
+                break;
+                case ($paramAcc['point'] > 1000 && $paramAcc['point'] <= 2500):
+                    $paramAcc['rank'] = 'potential';
+                break;
+                case ($paramAcc['point'] > 2500 && $paramAcc['point'] <= 7000):
+                    $paramAcc['rank'] = 'chummy';
+                break;
+                case ($paramAcc['point'] > 7000 && $paramAcc['point'] <= 15000):
+                    $paramAcc['rank'] = 'excellent';
+                break;
+                case ($paramAcc['point'] > 15000): 
+                    $paramAcc['rank'] = 'vip';
+                break;
+                default:
+            }
+            AccumulatePoint::create($paramAcc);
+        }
+    }
+
     public function addInvoice($order)
     {
         $data = $order->only([
@@ -76,8 +127,9 @@ class AjaxService implements AjaxServiceInterface
             'total_prices',
             'preferential',
             'order_status',
-            'cost',
+            'cost'
         ]);
+        $pointUsed = $order->point_used;
         $count =  Invoice::orderBy('id', 'DESC')->first()->id ?? 0;
         $data['invoice_code'] = 'EIV-000'. ($count + 1);
         $data['total_cost'] = $order->total_prices;
@@ -97,7 +149,13 @@ class AjaxService implements AjaxServiceInterface
             $dataDetail['invoice_code'] = $data['invoice_code'];
             InvoiceDetail::create($dataDetail);
         }
-        Invoice::create($data);
+        $invoice = Invoice::create($data);
+        \Log::info($invoice->customer_phone);
+        $this->setAccumulatePoint( $invoice->customer_phone,
+            $invoice->last_cost ?? 0,
+            $pointUsed ?? 0,
+            $invoice->customer_name,
+        );
         $order->orderDetail()->delete();
         $order->delete();
         \DB::commit();
@@ -127,7 +185,6 @@ class AjaxService implements AjaxServiceInterface
 
     public function checkQuantity($id, $quantity)
     {
-        // \Log::info($quantity);
         $product = Product::findOrFail($id);
 
         if ($product->quantity < $quantity) {

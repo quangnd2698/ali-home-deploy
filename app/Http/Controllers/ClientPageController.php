@@ -44,13 +44,21 @@ class ClientPageController extends Controller
 
     public function getProductDetail($id) {
         $product  = Product::findOrFail($id);
+        $products = Product::where('status', 'active')->get();
+        $data['ceramic_count'] = $products->where('product_type', 'ceramic')->count() ?? 0;
+        $data['tbvs'] = $products->where('product_type', 'TBVS')->count() ?? 0;
         $similarProducts = Product::where('producer', $product->producter)
             ->orWhere('product_type', $product->product_type);
         $similarProducts = $similarProducts->where('sale_price', '<', $product->sale_price + 30000)
             ->Where('sale_price', '>', $product->sale_price - 30000)->take(10)->get();
+        
         $product->count_view = $product->count_view + 1;
         $product->save();
-        return view('client/product_detail', compact('product'), compact('similarProducts'));
+        return view('client/product_detail', [
+            'product' => $product,
+            'similarProducts' => $similarProducts,
+            'data' => $data
+        ]);
     }
 
     public function AddToCart(Request $request) {

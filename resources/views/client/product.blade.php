@@ -186,7 +186,7 @@
                                     <div class="image" style="">
                                         <a href="{{ route('client.product_details', $product->id)}}">
                                             <img
-                                            @if($product->images->first()) src="images/products/{{$product->images->first()->name}}" @else src="images/products/product{{ $key + 1 }}.jpg" @endif
+                                            @if($product->images->first()) src="images/products/{{$product->images->first()->name}}.jpg" @else src="images/products/product{{ $key + 1 }}.jpg" @endif
                                             alt="" style="object-fit: cover; height: 160px; width: 100%" class="img-fluid">
                                         </a>
                                         <br>

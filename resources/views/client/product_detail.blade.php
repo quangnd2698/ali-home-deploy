@@ -50,7 +50,7 @@
                                     </div>
                                     @else
                                         @foreach ($product->images as $key => $image)
-                                        <div> <img src="images/products/{{$image->name}}" alt="" class="img-fluid"
+                                        <div> <img src="images/products/{{$image->name}}.jpg" alt="" class="img-fluid"
                                             style="height: 400px; object-fit: cover">
                                         </div>
                                         @endforeach
@@ -62,7 +62,7 @@
                                         class="img-fluid" style="height: 70px"></button>
                                     @else
                                         @foreach ($product->images as $key => $image)
-                                        <button class="owl-thumb-item"><img src="images/products/{{$image->name}}" alt=""
+                                        <button class="owl-thumb-item"><img src="images/products/{{$image->name}}.jpg" alt=""
                                             class="img-fluid" style="height: 70px"></button>
                                         @endforeach
                                     @endif
@@ -357,7 +357,7 @@
                                     <ul class="nav nav-pills nav-stacked category-menu">
                                         <li class="col-12">
                                             <a href="shop-category.html">Gạch men </a><span
-                                                class="badge badge-dark pull-right">420</span>
+                                                class="badge badge-dark pull-right">{{$data['ceramic_count']}}</span>
                                             <ul style="font-size: 14px; margin-left: 20px;">
                                                 <li><a href="shop-category.html" style="color: black">Gạch lát nền</a>
                                                 </li>
@@ -375,7 +375,7 @@
                                         </li>
                                         <li class="active col-12">
                                             <a href="shop-category.html">Thiết bị vệ sinh </a><span
-                                                class="badge badge-dark pull-right">123</span>
+                                                class="badge badge-dark pull-right">{{$data['tbvs']}}</span>
                                             <ul style="font-size: 14px; margin-left: 20px;">
                                                 <li><a href="shop-category.html" style="color: black">Bồn cầu</a>
                                                 </li>
@@ -401,7 +401,7 @@
                                 <div class="product" style="background-color: white;x">
                                     <div class="image">
                                         <a href="product_details/{{$combo->id}}">
-                                            <img src="images/products/product{{$key+1}}.jpg" alt=""
+                                            <img @if($product->images->first()) src="images/products/{{$product->images->first()->name}}.jpg" @else src="images/products/product{{ $key + 1 }}.jpg" @endif alt=""
                                                 style="object-fit: cover; height: 160px; width: 100%"
                                                 class="img-fluid">
                                         </a>
@@ -480,7 +480,7 @@
                                         <div class="product" style="width: 21% ;background-color: white; margin-left: 20px">
                                             <div class="image">
                                                 <a href="{{route('client.product_details', $product->id)}}">
-                                                    <img src="images/products/product{{$key+1}}.jpg" alt=""
+                                                    <img @if($similarProduct->images->first()) src="images/products/{{$similarProduct->images->first()->name}}.jpg" @else src="images/products/product{{ $key + 1 }}.jpg" @endif alt=""
                                                         style="object-fit: cover; height: 160px; width: 100%"
                                                         class="img-fluid">
                                                 </a>

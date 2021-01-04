@@ -19,7 +19,7 @@ class CreateInvoicesTable extends Migration
             $table->string('staff_sale');
             $table->string('introduce_staff')->nullable();
             $table->string('customer_name')->nullable();
-            $table->integer('customer_phone');
+            $table->string('customer_phone');
             $table->integer('total_cost');
             $table->string('preferential')->nullable();
             $table->integer('last_cost');

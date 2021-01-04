@@ -20,7 +20,7 @@ class CreateAdminsTable extends Migration
             $table->timestamp('email_verified_at')->nullable();
             $table->string('password');
             $table->string('address');
-            $table->bigInteger('phone');
+            $table->string('phone');
             $table->integer('basic_salary')->nullable();
             $table->date('date_of_birth');
             $table->string('gender');

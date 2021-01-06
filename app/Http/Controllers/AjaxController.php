@@ -134,7 +134,6 @@ class AjaxController extends Controller
     public function checkUserLogin(Request $request)
     {
         $result = $this->ajaxService->userLogin($request->only('phone', 'password')) ;
-        \Log::info($result);
         return $result;
     }
 }

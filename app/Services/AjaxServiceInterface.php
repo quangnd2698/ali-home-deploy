@@ -9,4 +9,6 @@ interface AjaxServiceInterface
     public function storeBrand($params);
     public function changeOrderStatus(array $params);
     public function checkQuantity($id, $quantity);
+    public function userLogin($credentials);
+
 }

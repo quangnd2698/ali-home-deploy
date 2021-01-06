@@ -96,6 +96,7 @@ class ClientPageController extends Controller
             // $productQuantity = $products->pluck('quantity');
             $params = $products->map(function ($product, $key) {
                 return [
+                    'product_image' => $product->images()->first()->name,
                     'product_id' => $product->id,
                     'product_name' => $product->product_name,
                     'quantity' =>$_COOKIE['count_product-' . $product->id] ?? 1,
@@ -190,8 +191,8 @@ class ClientPageController extends Controller
         }
         
         $contactMail = new SendEmail($params);
-        // $sendEmailJob = new SendEmailJob($contactMail);
-        Mail::to('alihomeht@gmail.com')->send($contactMail);
+        $sendEmailJob = new SendEmailJob($contactMail);
+        // Mail::to('alihomeht@gmail.com')->send($contactMail);
         // dispatch($sendEmailJob);
         alert()->success('gửi', 'thành công');
         return redirect()->route('users.contact.index');

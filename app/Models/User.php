@@ -33,8 +33,8 @@ class User extends Authenticatable
         'date_of_birth',
         'gender',
         'avatar',
-        'point',
-        'rank',
+        // 'point',
+        // 'rank',
     ];
 
     /**

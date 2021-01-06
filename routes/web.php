@@ -40,6 +40,7 @@ Route::middleware('adminLogin')->prefix('admin')->group(function () {
     Route::resource('products', 'ProductController');
     Route::resource('orders', 'OrderController');
     Route::resource('carts', 'CartController');
+    // Route::resource('promotions', 'PromotionController');
     Route::resource('invoices', 'InvoiceController');
     Route::resource('importInvoices', 'ImportInvoiceController');
     Route::post('importInvoices/delete_more', 'ImportInvoiceController@deleteMore')->name('importInvoices.delete_more');
@@ -85,6 +86,7 @@ Route::get('ajax/brands/create', 'AjaxController@storeBrand');
 Route::get('ajax/changeStatus', 'AjaxController@changeStatus');
 Route::get('ajax/changeOrderStatus', 'AjaxController@changeOrderStatus');
 Route::get('ajax/check_quantity', 'AjaxController@checkQuantityCart');
+Route::get('ajax/login', 'AjaxController@checkUserLogin');
 
 Route::get('sender', function ()
 {

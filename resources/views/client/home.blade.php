@@ -176,7 +176,7 @@
                                             <a href="{{route('client.product_details', $product->id)}}" style="font-size: 13px; margin: 0%">{{$product->product_name}}</a>
                                             <p class="price"
                                                 style="color: red;font-size: 13px; text-align: center;margin: 0%;padding: 0% ">
-                                                <del style="font-size: 10px">{{$product->sale_price + 20000}}</del>
+                                                {{-- <del style="font-size: 10px">{{$product->sale_price + 20000}}</del> --}}
                                                 {{ number_format($product->sale_price, 0, ',', ' ') }} vnđ/m2
                                             </p>
                                             <p style="margin-top: 0%; color: #FF9900; padding: 0%; margin: 0%">

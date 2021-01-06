@@ -91,7 +91,6 @@ class UserController extends Controller
     {
         list($success, $errors) = $this->userService->updateUser($id, $request);
         if (!$success) {
-            dd($errors);
             return redirect()->route('users.profile', $id)->withErrors($errors);
         }
         alert()->success('Cập nhật', 'thành công');

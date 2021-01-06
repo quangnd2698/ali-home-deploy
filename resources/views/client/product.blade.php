@@ -25,7 +25,7 @@
         </div>
         <div class="col-10">
             <div class="row bar" style="padding: 10px">
-                <div class="col-md" style="background-color: #FFE4B5; margin-right: 10px">
+                <div class="col-md" style="background-color: #ffffff; margin-right: 10px">
                     <!-- MENUS AND FILTERS-->
                     {{-- <div class="panel panel-default sidebar-menu">
                         --}}
@@ -192,8 +192,8 @@
                                         <br>
                                         <div class="text">
                                             <a href="{{ route('client.product_details', $product->id)}}" style="font-size: 13px">{{$product->product_name}}</a>
-                                            <p class="price" style="color: red;font-size: 12px; text-align: left">
-                                                <del style="font-size: 10px">{{ number_format($product->sale_price + 30000, 0, ',', ' ') }} vnđ</del>
+                                            <p class="price" style="color: red;font-size: 15px; text-align: center">
+                                                {{-- <del style="font-size: 10px">{{ number_format($product->sale_price + 30000, 0, ',', ' ') }} vnđ</del> --}}
                                                 {{ number_format($product->sale_price, 0, ',', ' ') }} vnđ/m2
                                             </p>
                                         </div>

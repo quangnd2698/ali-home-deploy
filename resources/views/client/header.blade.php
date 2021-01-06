@@ -62,8 +62,8 @@
                         aria-hidden="true">×</span></button>
             </div>
             <div class="modal-body">
-                <form action="{{ route('users.sign_in') }}" method="POST">
-                    @csrf
+                {{-- <form action="{{ route('users.sign_in') }}" method="POST"> --}}
+                    {{-- @csrf --}}
                     <div class="form-group">
                         <input id="email_modal" type="text" placeholder="phone" name="phone" class="form-control">
                     </div>
@@ -72,10 +72,10 @@
                             class="form-control">
                     </div>
                     <p class="text-center">
-                        <button type="submit" class="btn btn-template-outlined"><i class="fa fa-sign-in"></i> Log
+                        <button type="submit" class="btn btn-template-outlined" onclick="login()"><i class="fa fa-sign-in"></i> Log
                             in</button>
                     </p>
-                </form>
+                {{-- </form> --}}
                 {{-- <p class="text-center text-muted">Not registered yet?</p>
                 --}}
                 {{-- <p class="text-center text-muted"><a

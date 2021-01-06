@@ -31,7 +31,6 @@ class LoginController extends Controller
                 break;
                 default;
             }
-            // return redirect()->route('admins.index');
         }
         return redirect()->route('login');
     }
@@ -45,12 +44,8 @@ class LoginController extends Controller
 
     public function userAuthenticate(Request $request)
     {
-
-        // dd(1);
         $credentials = $request->only('phone', 'password');
-        // $admin = Admin::where('email', $credentials['email'])->where('password', $credentials['password'])->get();
         if (Auth::guard('web')->attempt($credentials)) {
-            // dd(1);
             return redirect()->route('client.home');
         }
         return redirect()->route('users.login')->with('thongbaoloi', 'Tài khoản hoặc mật khẩu không đúng');

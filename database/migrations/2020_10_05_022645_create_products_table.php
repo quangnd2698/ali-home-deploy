@@ -38,6 +38,10 @@ class CreateProductsTable extends Migration
 
             $table->unique('product_code');
             $table->unique('product_name');
+
+            $table->index('product_code');
+            $table->index('product_name');
+            $table->index('producer');
         });
     }
 

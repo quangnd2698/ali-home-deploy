@@ -27,5 +27,6 @@ class Promotion extends Model
     public function getStatusAttribute()
     {
         $dateFrom = date($this->date_form);
+        $dateTo = date($this->date_form);
     }
 }

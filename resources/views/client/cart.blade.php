@@ -50,7 +50,7 @@
                                         <tbody>
                                             @foreach ($carts as $cart)
                                             <tr id="cart-{{$cart->product_id}}">
-                                                <td><a href="product_details/{{$cart->product_id}}"><img src="images/products/product10.jpg" alt="White Blouse Armani"
+                                                <td><a href="product_details/{{$cart->product_id}}"><img src="images/products/{{$cart->product_image}}.jpg"
                                                     style="object-fit: cover; height: 50px;" class="img-fluid"></a></td>
                                                 <td><a href="product_details/{{$cart->product_id}}">{{$cart->product_name}}</a></td>
                                                 <td>

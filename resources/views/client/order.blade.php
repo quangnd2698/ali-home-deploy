@@ -164,7 +164,7 @@
                                     
                                     <div class="box-footer d-flex flex-wrap align-items-center justify-content-between">
                                         <div class="left-col"><a href="{{route('client.carts')}}" class="btn btn-secondary mt-0"><i
-                                                    class="fa fa-chevron-left"></i>Quay lại giỏ hàng</a></div>
+                                            class="fa fa-chevron-left"></i>Quay lại giỏ hàng</a></div>
                                     </div>
                                 {{-- </form> --}}
                             </div>
@@ -180,7 +180,6 @@
                                     <ul class="list-group list-group-flush">
                                         <hr style="background-color: red">
                                         <li class="list-group-item">Tạm tính: <b id="cost_temporary">{{ number_format($last_cost, 0, ',', ' ') }} vnđ</b></li>
-                                        <li class="list-group-item">Phí vận chuyển: 0.00
                                         <li class="list-group-item">
                                             <div class="row">
                                             <h6 class="col-12">Thành tiền: <span style="color: red; font-size: 20px" id="last_money">{{ number_format($last_cost, 0, ',', ' ') }} vnđ</span></h6>

@@ -130,4 +130,11 @@ class AjaxController extends Controller
         $result = $this->ajaxService->checkQuantity($request->id, $request->quantity) ;
         return $result;
     }
+
+    public function checkUserLogin(Request $request)
+    {
+        $result = $this->ajaxService->userLogin($request->only('phone', 'password')) ;
+        \Log::info($result);
+        return $result;
+    }
 }

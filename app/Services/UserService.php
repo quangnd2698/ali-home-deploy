@@ -74,6 +74,16 @@ class UserService implements UserServiceInterface
         }
 
         $param['password'] = bcrypt($param['password']);
+        if ($request->hasFile('image')) {
+            $filename = time() . '.' . $param['image']->getClientOriginalExtension();
+            $param['image']->move(public_path('images/users'), $filename);
+            $param['avatar'] = $filename;
+            $image_path = public_path('images/users/' . $user->avatar);
+            if ($user->avatar && file_exists($image_path)) {
+                unlink($image_path);
+            }
+        }
+        
         $user->update($param);
 
         return [true, ''];

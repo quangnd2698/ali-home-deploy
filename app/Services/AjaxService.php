@@ -200,4 +200,13 @@ class AjaxService implements AjaxServiceInterface
         ];
     }
 
+    public function userLogin($credentials)
+    {
+
+        if (\Auth::guard('web')->attempt($credentials)) {
+            return "true";
+        }
+        return "false";
+    }
+
 }

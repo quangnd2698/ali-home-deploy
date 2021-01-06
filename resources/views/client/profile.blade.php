@@ -136,10 +136,10 @@
             <div class="col-md-3 col-sm-3 col-xs-12 user-profil-part pull-left">
                 <div class="row ">
                     <div class="col-md-12 col-md-12-sm-12 col-xs-12 user-image text-center">
-                        <img src="@if (isset($user->avatar))
-                            {{'images/users'. $user->avatar}}
+                        <img @if (isset($user->avatar))
+                            src="images/users/{{$user->avatar}}"
                         @else
-                            https://www.jamf.com/jamf-nation/img/default-avatars/generic-user-purple.png"
+                            src="https://www.jamf.com/jamf-nation/img/default-avatars/generic-user-purple.png"
                         @endif
                             class="rounded-circle">
                     </div>
@@ -323,7 +323,29 @@
                                                         @endif
                                                     </div>
                                                 </div>
-                                                
+                                                <div class="form-group row">
+                                                    <label class="col-sm-12 col-md-2 col-form-label"><h6>Ảnh</h6></label>
+                                                    <div class="form-group col-md-9" id="form_gr">
+                                                        <div class="col-sm-12 col-md-8">
+                                                            <input type="file" class="custom-file-input" name="image" id="image"
+                                                            @if(isset($user))
+                                                                value="{{$user->avatar}}"
+                                                            @endif>
+                                                            <label class="custom-file-label"> Chọn ảnh </label>
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                                <div class="form-group row">
+                                                    <label for="example-datetime-local-input" class="col-sm-12 col-md-2 col-form-label"></label>
+                                                    <div class="col-sm-12 col-md-3" id="div_avatar">
+                                                        <img id="img_avartar" class="img-thumbnail" style="width: 200px" 
+                                                        @if(isset($user)) {{$user->avatar}}
+                                                            src = "images/users/{{$user->avatar}}"
+                                                        @else
+                                                            src = "images/users/avatar.jpg"
+                                                        @endif >
+                                                    </div>
+                                                </div>
                                                 <br>
                                                 <div class="row justify-content-md-center col-sm-12">
                                                     <input style class="col-sm-12 col-md-2 btn btn-primary" type="submit" value="Sửa" id="submit">
@@ -341,43 +363,23 @@
     </div>
 </div>
 
-<div class="modal fade" id="contact" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
-    <div class="modal-dialog" role="document">
-        <div class="modal-content">
-            <div class="modal-header">
-                <h5 class="modal-title" id="contact">Contactarme</h5>
-                <button type="button" class="close" data-dismiss="modal" aria-label="Close">
-                    <span aria-hidden="true">×</span>
-                </button>
-            </div>
-            <div class="modal-body">
-                <div class="form-group">
-                    <p for="msj">Se enviará este mensaje a la persona que desea contactar, indicando que te quieres comunicar con el. Para esto debes de ingresar tu información personal.</p>
-                </div>
-                <div class="form-group">
-                    <label for="txtFullname">Nombre completo</label>
-                    <input type="text" id="txtFullname" class="form-control">
-                </div>
-                <div class="form-group">
-                    <label for="txtEmail">Email</label>
-                    <input type="text" id="txtEmail" class="form-control">
-                </div>
-                <div class="form-group">
-                    <label for="txtPhone">Teléfono</label>
-                    <input type="text" id="txtPhone" class="form-control">
-                </div>
-            </div>
-            <div class="modal-footer">
-                <button type="button" class="btn btn-secondary" data-dismiss="modal">Cancelar</button>
-                <button type="button" class="btn btn-primary" (click)="openModal()" data-dismiss="modal">Guardar</button>
-            </div>
-        </div>
-    </div>
-</div>
-
     @endsection
     @section('script')
 
         <script>
+            function readURL(input) {
+        if (input.files && input.files[0]) {
+            var reader = new FileReader();
+            reader.onload = function(e) {
+            $('#img_avartar').attr('src', e.target.result);
+            }
+
+        reader.readAsDataURL(input.files[0]); // convert to base64 string
+        }
+    }
+
+    $('input[name="image"]').change(function(){
+        readURL(this);
+    });
         </script>
     @endsection

@@ -43,10 +43,10 @@
 
                 <div class="col-12" style="margin-top: 5px">
                     <br>
-                    <h3>Các chương trình khuyến mãi đang có</h3>
+                    <h3>Các chương trình tích điểm cho khách hàng thân thiết</h3>
                     <br>
                 </div>
-                <div class="col-12 row">
+                {{-- <div class="col-12 row">
                     <div class="col-6">
                         <div class="blog-item"  style="background-color: gray">
                             <a href="/chuong-trinh-khuyen-mai-nam-moi-qua-da-sale-sap-gia" class="b-img">
@@ -67,7 +67,7 @@
                         </a>
                         </div>
                     </div>
-                </div>
+                </div> --}}
             </div>
         </div>
 

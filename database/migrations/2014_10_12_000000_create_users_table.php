@@ -24,8 +24,8 @@ class CreateUsersTable extends Migration
             $table->date('date_of_birth');
             $table->string('gender');
             $table->string('avatar')->nullable();
-            $table->integer('point')->nullable();
-            $table->string('rank')->nullable();
+            // $table->integer('point')->nullable();
+            // $table->string('rank')->nullable();
             $table->rememberToken();
             $table->foreignId('current_team_id')->nullable();
             $table->text('profile_photo_path')->nullable();

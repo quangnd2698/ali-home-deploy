@@ -106,10 +106,10 @@
                                             </li>
                                             <div class="card"
                                                 style="border-width:5px; border-color: #009900; border-radius: 15px; text-align: center">
-                                                <h2 style="color: red; margin-top: 15px">{{ number_format($product->sale_price, 0, ',', ' ') }} VNĐ</h2>
-                                                <p class="text">Tiết kiệm đến <span
+                                                <h2 style="color: red; margin-top: 15px">Giá {{ number_format($product->sale_price, 0, ',', ' ') }} VNĐ</h2>
+                                                {{-- <p class="text">Tiết kiệm đến <span
                                                         style="color: red; font-size: 20px">5%</span> (giá gốc) <del>{{ number_format($product->sale_price + 30000, 0, ',', ' ') }}
-                                                        VNĐ</del></p>
+                                                        VNĐ</del></p> --}}
                                             </div>
                                             <input type="number" name="max_quantity" value="{{$product->quantity}}">
                                             <div class="col-12 row">
@@ -410,7 +410,7 @@
                                         <a href="product_details/{{$combo->id}}" style="font-size: 13px; margin: 0%">{{$combo->product_name}}</a>
                                         <p class="price"
                                             style="color: red;font-size: 13px; text-align: center;margin: 0%;padding: 0% ">
-                                            <del style="font-size: 10px">{{$combo->sale_price + 20000}}</del>
+                                            {{-- <del style="font-size: 10px">{{$combo->sale_price + 20000}}</del> --}}
                                             {{ number_format($combo->sale_price, 0, ',', ' ') }} vnđ/m2
                                         </p>
                                         <p style="margin-top: 0%; color: #FF9900; padding: 0%; margin: 0%">
@@ -489,7 +489,7 @@
                                                 <a href="{{route('client.product_details', $product->id)}}" style="font-size: 13px; margin: 0%">{{$similarProduct->product_name}}</a>
                                                 <p class="price"
                                                     style="color: red;font-size: 13px; text-align: center;margin: 0%;padding: 0% ">
-                                                    <del style="font-size: 10px">{{$similarProduct->sale_price + 20000}}</del>
+                                                    {{-- <del style="font-size: 10px">{{$similarProduct->sale_price + 20000}}</del> --}}
                                                     {{ number_format($similarProduct->sale_price, 0, ',', ' ') }} vnđ/m2
                                                 </p>
                                                 <p style="margin-top: 0%; color: #FF9900; padding: 0%; margin: 0%">
@@ -736,6 +736,34 @@
         }
 
         
+    };
+
+    function login () {
+
+        var phone = $('input[name="phone"]').val();
+        var password = $('input[name="password"]').val();
+        var request = $.ajax({
+            url: "ajax/login",
+            method: "GET",
+            data: {
+                phone : phone,
+                password : password,
+            },
+            dataType: "html"
+        });
+        request.done(function( data ) {
+            if (data == "true") {
+                location.reload() 
+            } else {
+                alert('mật khẩu hoặc tài khoản không đúng');
+            }
+        });
+        
+        request.fail(function( jqXHR, textStatus ) {
+            alert( "Request failed: " + textStatus );
+        });
+
+
     };
 
     </script>

@@ -753,9 +753,10 @@
         });
         request.done(function( data ) {
             if (data == "true") {
-                location.reload() 
+                alert("đăng nhập thành công")
+                location.reload()
             } else {
-                alert('mật khẩu hoặc tài khoản không đúng');
+                alert('tài khoản hoặc mật khẩu không đúng');
             }
         });
         

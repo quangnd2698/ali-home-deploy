@@ -50,6 +50,10 @@ class AuthServiceProvider extends ServiceProvider
             return $user->permission === 1 || $user->permission === 2;
         });
 
+        Gate::define('isAdminOrWarehouse', function($user) {
+            return $user->permission === 1 || $user->permission === 3;
+        });
+
         Gate::define('itMe', function($user, $auth) {
             return $user->id === $auth->id;
         });

@@ -93,7 +93,7 @@
                         </td>
                         <td>{{$product->product_name}}</td>
                         <td>{{$product->count_buy}}</td>
-                        <td>{{$product->sale_price}}</td>
+                        <td>{{ number_format($product->sale_price, 0, ',', ' ') }}</td>
                     </tr>
                     @endforeach
                     

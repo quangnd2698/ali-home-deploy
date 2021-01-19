@@ -122,9 +122,9 @@ class HomeService implements HomeServiceInterface
 
         $data['price_type'] = $this->getPriceType($dataPriceType);
         
-        $products = Product::all();
-        $data['products'] = $products->sortBy(['count_buy', 'desc'])->take(10);
-        // dd($data['products']->first()->count_buy);
+        $products = Product::all()->sortByDesc('count_buy')->take(10);
+        $data['products'] = $products;
+        // dd($data['products']);
         return $data;
     }
 

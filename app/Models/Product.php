@@ -99,11 +99,6 @@ class Product extends Model
         return $this->hasMany('App\Models\Image', 'product_code', 'product_code');
     }
 
-    // public function invoiceDetail()
-    // {
-    //     return $this->hasMany('App\Models\InvoiceDetail', 'product_code', 'product_code');
-    // }
-
     public function comments()
     {
         return $this->hasMany('App\Models\Comment', 'product_id', 'id');
@@ -111,8 +106,9 @@ class Product extends Model
 
     public function getCountBuyAttribute()
     {
-        $quantityProduct = InvoiceDetail::where('product_code', $this->product_code);
-        return  $quantityProduct ? $quantityProduct->count() : 0;
+        $quantityProducts = InvoiceDetail::where('product_code', $this->product_code)->pluck('quantity_product');
+        // return array_sum($quantityProducts->toArray());
+        return  $quantityProducts ? array_sum($quantityProducts->toArray()) : 0;
     }
     
     public function getCountEvaluateAttribute()
@@ -173,7 +169,6 @@ class Product extends Model
         $str = preg_replace("/(Ù|Ú|Ụ|Ủ|Ũ|Ư|Ừ|Ứ|Ự|Ử|Ữ)/", "U", $str);
         $str = preg_replace("/(Ỳ|Ý|Ỵ|Ỷ|Ỹ)/", "Y", $str);
         $str = preg_replace("/(Đ)/", "D", $str);
-        //$str = str_replace(" ", "-", str_replace("&*#39;","",$str));
         return $str;
     }
 }

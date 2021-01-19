@@ -124,7 +124,7 @@
                                 <td>{{ number_format($detail->insurrance, 0, ',', ',') }}</td>
                                 <td>{{ number_format($detail->last_salary, 0, ',', ',') }}</td>
                                 {{-- <td>{{ number_format(9000000, 0, ',', ',') }}</td> --}}
-                                <td>{{ now()->month}}</td>
+                                <td>{{ $salary->month }}</td>
                             </tr>
                             @endforeach
                         </tbody>
@@ -147,7 +147,7 @@
         </div>
     </div>
 
-    {{-- <div class="modal fade" id="confirmation-modal-{{$order->id}}" tabindex="-1" role="dialog" aria-hidden="true">
+    <div class="modal fade" id="confirmation-modal-{{$salary->id}}" tabindex="-1" role="dialog" aria-hidden="true">
         <div class="modal-dialog modal-dialog-centered" role="document">
             <div class="modal-content">
                 <div class="modal-body text-center font-18">
@@ -157,7 +157,7 @@
                             <button type="button" class="btn btn-secondary border-radius-100 btn-block confirmation-btn" data-dismiss="modal"><i class="fa fa-times"></i></button>
                             NO
                         </div>
-                        <form action="{{ route('orders.destroy', $order->id) }}" method="POST"> 
+                        <form action="{{ route('salaries.destroy', $salary->id) }}" method="POST"> 
                             @csrf
                             @method('DELETE')
                             <div class="col-6">
@@ -169,36 +169,8 @@
                 </div>
             </div>
         </div>
-    </div> --}}
+    </div>
     @endforeach
-
-            <div class="modal fade" id="warning-modal" tabindex="-1" role="dialog" aria-labelledby="myLargeModalLabel" aria-hidden="true">
-                <div class="modal-dialog modal-sm modal-dialog-centered ">
-                    <div class="modal-content bg-warning" >
-                        <div class="modal-body text-center">
-                            <h3 class="mb-15"><i class="fa fa-exclamation-triangle"></i> Warning</h3>
-                            <p>Bạn đang xóa nhiều mục cùng lúc, bạn có chắc chắn xóa các mục đó không</p>
-                            <div class="row">
-                                <div class="col-6">
-                                    <button type="button" class="btn btn-secondary border-radius-100 btn-block confirmation-btn" data-dismiss="modal"><i class="fa fa-times"></i></button>
-                                    NO
-                                </div>
-                                {{-- <form action="{{route('orders.delete_more')}}" method="POST">  --}}
-                                    @csrf
-                                    {{-- @method('DELETE') --}}
-                                    <div class="col-6">
-                                        <input type="text" name="checkbox_selected" style="display: none">
-                                        <button type="submit" class="btn btn-primary border-radius-100 btn-block confirmation-btn" ><i class="fa fa-check"></i></button>
-                                        YES
-                                    </div>
-                                </form>
-                            </div>
-                            
-                        </div>
-                    </div>
-                </div>
-            </div>
-
 @endsection
 @section('script')
     <script src="src/plugins/datatables/js/dataTables.buttons.min.js"></script>

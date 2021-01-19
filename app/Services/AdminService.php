@@ -20,7 +20,7 @@ class AdminService implements AdminServiceInterface
             'name' => 'required|string|max:64',
             'address' => 'required|string|max:124',
             'phone' => 'required|numeric|unique:admins|regex:/(0)[0-9]/|not_regex:/[a-z]/|min:9',
-            'date_of_birth' => 'required|string',
+            'date_of_birth' => 'required|string|max:255',
             'basic_salary' => 'nullable|numeric',
             'gender' => 'required|string',
             'permission' => 'required|numeric',
@@ -43,7 +43,7 @@ class AdminService implements AdminServiceInterface
             'name' => 'sometimes|string|max:64',
             'address' => 'sometimes|string|max:124',
             'phone' => 'sometimes|numeric|regex:/(0)[0-9]/|not_regex:/[a-z]/|min:9|unique:admins,phone,'.$id,
-            'date_of_birth' => 'sometimes|string',
+            'date_of_birth' => 'sometimes|string|max:255',
             'gender' => 'sometimes|string',
             'basic_salary' => 'nullable|numeric',
             'permission' => 'sometimes|numeric',
@@ -58,7 +58,6 @@ class AdminService implements AdminServiceInterface
         list($success, $errors) = $this->validateStoreAdminRequest($param);
         if (!$success) {
             return [false, $errors];
-            // return redirect()->route('admins.create')->withErrors($errors);
         }
         $param['password'] = bcrypt($param['password']);
         if ($request->hasFile('image')) {

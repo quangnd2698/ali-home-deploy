@@ -51,7 +51,7 @@ class SalaryController extends Controller
     {
         $now = getdate();
         $paramDetails  = $request->data;
-        $salary_code = 'SLR' .'-' . $now['mon'] . '-' . $now['year'] . '/' . Str::random(2);
+        $salary_code = 'SLR' .'-' . $now['mon'] . '-' . $now['year'] . '/';
         $total_cost = 0;
         // dd($paramDetails);
         foreach ($paramDetails as $key => $paramDetail) {
@@ -114,7 +114,11 @@ class SalaryController extends Controller
      */
     public function destroy($id)
     {
-        
+        $salary = Salary::findOrFail($id);
+        $salary->salaryDetail()->delete();
+        $salary->delete();
+        alert()->success('Xóa bảng lương', 'thành công');
+        return redirect()->route('salaries.index');
     }
 
     /**

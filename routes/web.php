@@ -38,13 +38,11 @@ Route::middleware('adminLogin')->prefix('admin')->group(function () {
     Route::get('admins/profile/{id}', 'AdminController@getProfile')->name('admins.profile');
     Route::resource('users', 'UserController')->middleware('can:isAdminOrSale');
     Route::resource('products', 'ProductController');
-    Route::resource('orders', 'OrderController');
-    Route::resource('carts', 'CartController');
-    // Route::resource('promotions', 'PromotionController');
-    Route::resource('invoices', 'InvoiceController');
-    Route::resource('importInvoices', 'ImportInvoiceController');
-    Route::post('importInvoices/delete_more', 'ImportInvoiceController@deleteMore')->name('importInvoices.delete_more');
-    Route::post('products/delete_more', 'ProductController@deleteMore')->name('products.delete_more');
+    Route::resource('orders', 'OrderController')->middleware('can:isAdminOrSale');;
+    Route::resource('invoices', 'InvoiceController')->middleware('can:isAdminOrSale');;
+    Route::resource('importInvoices', 'ImportInvoiceController')->middleware('can:isAdminOrWarehouse');;
+    Route::post('importInvoices/delete_more', 'ImportInvoiceController@deleteMore')->name('importInvoices.delete_more')->middleware('can:isAdmin');;
+    Route::post('products/delete_more', 'ProductController@deleteMore')->name('products.delete_more')->middleware('can:isAdminOrWarehouse');
     Route::get('salaries/payroll', 'SalaryController@getPayroll')->name('salaries.payroll')->middleware('can:isAdmin');
     
 
@@ -93,10 +91,10 @@ Route::get('sender', function ()
     return view('sender');
 });
 
-Route::post('sender', function (Request $request)
-{
-    // dd($request->all());
-    $text = $request->content;
-    // dd($text);
-    event(new MessageSent($text));
-});
+// Route::post('sender', function (Request $request)
+// {
+//     // dd($request->all());
+//     $text = $request->content;
+//     // dd($text);
+//     event(new MessageSent($text));
+// });

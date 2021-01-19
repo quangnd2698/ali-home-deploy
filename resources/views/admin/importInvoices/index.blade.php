@@ -50,7 +50,6 @@
                 <th>Mã phiếu</th>
                 <th>Nhân viên</th>
                 <th>Tổng tiền</th>
-                <th>Nội dung</th>
                 <th>Ngày tạo</th>
                 <th>Action</th>
             </tr>
@@ -64,20 +63,13 @@
                     </td>
                     <td>{{ $importInvoice->invoice_code }}</td>
                     <td>{{ $importInvoice->staff_make }}</td>
-                    <td>{{ $importInvoice->total_cost }}</td>
-                    <td></td>
+                    <td>{{ number_format($importInvoice->total_cost, 0, '.', ',') }}</td>
                     <td>{{ $importInvoice->created_at }}</td>
                     <td style="font-size: 16px; width: 100px;" class="row">
                         <div class="col-4"><a data-toggle="modal"  style="padding: 0px 5px 0px 5px" class="btn btn-primary"
                             data-target="#bd-example-modal-lg-{{ $importInvoice->id }}" href="#">
                             <i class="icon-copy fa fa-eye" aria-hidden="true"></i>
                         </a>
-                        </div>
-                        <div class="col-4">
-                            <a href="{{ route('importInvoices.edit', $importInvoice->id) }}" class="btn btn-success"
-                                style="padding: 0px 5px 0px 5px">
-                                <i class="icon-copy fa fa-edit" aria-hidden="true"></i>
-                            </a>
                         </div>
                         <div class="col-4">
                             <a data-toggle="modal" style="padding: 0px 5px 0px 5px" class="btn btn-danger" data-target="#confirmation-modal-{{ $importInvoice->id }}"><i

@@ -109,9 +109,8 @@ class ProductController extends Controller
     public function destroy($id)
     {
         $product = Product::findOrFail($id);
-        $images = Image::where('product_code', $product);
         try {
-            $images->delete();
+            $product->images()->delete();
             $product->delete();
         } catch (Exception $e) {
             return redirect()->route('importInvoices.index')->withErrors($e->getMessage());
@@ -122,34 +121,20 @@ class ProductController extends Controller
 
     public function deleteMore(Request $request)
     {
-        // if (\Gate::allows('isAdmin')) {
-            
         list($success, $errors) = $this->productService->deleteMoreProduct($request);
         if (!$success) {
             return redirect()->route('products.index')->withErrors($errors);
         }
         alert()->success('Xóa', 'thành công');
         return redirect()->route('products.index');
-        // }
-        // return redirect()->to('403');
     }
 
     public function searchByName(Request $request)
     {
-
         $params = $request->value;
-        $params = $request->value;
-        $data = Product::search($params)->get()->toArray();
+        $data = Product::where('status', 'active')->search($params)->get()->toArray();
 
         return response()->json($data);
-    }
-
-    public function searchByProductCode(Request $request)
-    {
-        // dd(1);
-        $products = Product::where('product_code', 'like', '%' . $request->value . '%')->get();
-
-        return response()->json($products);
     }
 
 }

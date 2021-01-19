@@ -50,7 +50,7 @@
                                     </div>
                                     @else
                                         @foreach ($product->images as $key => $image)
-                                        <div> <img src="images/products/{{$image->name}}.jpg" alt="" class="img-fluid"
+                                        <div> <img src="images/products/{{$image->name}}" alt="" class="img-fluid"
                                             style="height: 400px; object-fit: cover">
                                         </div>
                                         @endforeach
@@ -62,7 +62,7 @@
                                         class="img-fluid" style="height: 70px"></button>
                                     @else
                                         @foreach ($product->images as $key => $image)
-                                        <button class="owl-thumb-item"><img src="images/products/{{$image->name}}.jpg" alt=""
+                                        <button class="owl-thumb-item"><img src="images/products/{{$image->name}}" alt=""
                                             class="img-fluid" style="height: 70px"></button>
                                         @endforeach
                                     @endif
@@ -401,7 +401,7 @@
                                 <div class="product" style="background-color: white;x">
                                     <div class="image">
                                         <a href="product_details/{{$combo->id}}">
-                                            <img @if($product->images->first()) src="images/products/{{$product->images->first()->name}}.jpg" @else src="images/products/product{{ $key + 1 }}.jpg" @endif alt=""
+                                            <img @if($product->images->first()) src="images/products/{{$product->images->first()->name}}" @else src="images/products/product{{ $key + 1 }}.jpg" @endif alt=""
                                                 style="object-fit: cover; height: 160px; width: 100%"
                                                 class="img-fluid">
                                         </a>
@@ -480,7 +480,7 @@
                                         <div class="product" style="width: 21% ;background-color: white; margin-left: 20px">
                                             <div class="image">
                                                 <a href="{{route('client.product_details', $product->id)}}">
-                                                    <img @if($similarProduct->images->first()) src="images/products/{{$similarProduct->images->first()->name}}.jpg" @else src="images/products/product{{ $key + 1 }}.jpg" @endif alt=""
+                                                    <img @if($similarProduct->images->first()) src="images/products/{{$similarProduct->images->first()->name}}" @else src="images/products/product{{ $key + 1 }}.jpg" @endif alt=""
                                                         style="object-fit: cover; height: 160px; width: 100%"
                                                         class="img-fluid">
                                                 </a>
@@ -536,7 +536,6 @@
         function checkQuantity() {
             var count = $('input[name="count_product"]').val();
             var max_quantity = $('input[name="max_quantity"]').val();
-            // alert(max_quantity)
             if (Number(count) > Number(max_quantity)) {
                 return false
             } else {
@@ -591,15 +590,12 @@
         $('#alerts').slideUp( 4000 ).delay( 4000 ).remove( 4000 );
     }
 
-    // $.cookie("cart_product",",",{ expires: 7, path: '/' });
     function addToCart(id) {
-        // alert(checkQuantity());
         if (checkQuantity() == true) {
             var listProduct = $.cookie("cart_product");
             var count = $('input[name="count_product"]').val();
 
             if (listProduct == null || listProduct.search(','+ id + ',') == -1) {
-                // alert(1);
                 if (listProduct == null) {
                     listProduct = ','
                 }
@@ -608,7 +604,6 @@
 
                 $.cookie("cart_product", listProduct,{ expires: 7, path: '/' });
                 $.cookie("count_product-"+id, count,{ expires: 7, path: '/' });
-                // $.cookie("product-"+id, id,{ expires: 7, path: '/' });
                 alertSuccess();
             } else {
                 alertErrors();
@@ -625,7 +620,6 @@
             var count = $('input[name="count_product"]').val();
 
             if (listProduct == null || listProduct.search(','+ id + ',') == -1) {
-                // alert(1);
                 if (listProduct == null) {
                     listProduct = ','
                 }

@@ -19,6 +19,6 @@ class Salary extends Model
         'note',
     ];
     public function salaryDetail() {
-        return $this->HasMany('App\Models\SalaryDetail', 'salary_code', 'salary_code')->get();
+        return $this->HasMany('App\Models\SalaryDetail', 'salary_code', 'salary_code');
     }
 }

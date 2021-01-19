@@ -7,6 +7,7 @@ use Illuminate\Support\Facades\Validator;
 use Symfony\Component\HttpFoundation\Request;
 use Illuminate\Support\Facades\DB;
 use App\Models\Image;
+use App\Models\Comment;
 
 class ProductService implements ProductServiceInterface
 {
@@ -27,7 +28,7 @@ class ProductService implements ProductServiceInterface
             'color' => 'string|max:32',
             'surface' => 'string|max:32',
             'product_type' => 'required|string',
-            'user_for' => 'string',
+            'user_for' => 'nullable|string|max:255',
             'quantity_in_one_box' => 'nullable|numeric',
             'quantity' => 'nullable|numeric',
             'import_price' => 'required|numeric',
@@ -37,8 +38,7 @@ class ProductService implements ProductServiceInterface
             'number_error' => 'nullable|numeric',
             'status' => 'required|string|max:10',
             'point' => 'nullable|numeric',
-            'description' => 'nullable|string',
-            // 'sale_on_web' => 'nullable|string|max:8',
+            'description' => 'nullable|string|max:255',
         ]);
         return [$validator->passes(), $validator->errors()];
     }
@@ -60,7 +60,7 @@ class ProductService implements ProductServiceInterface
             'material' => 'string|max:32',
             'color' => 'string|max:32',
             'surface' => 'string|max:32',
-            'user_for' => 'string',
+            'user_for' => 'nullable|string|max:255',
             'quantity_in_one_box' => 'nullable|numeric',
             'quantity' => 'nullable|numeric',
             'import_price' => 'sometimes|numeric',
@@ -71,7 +71,6 @@ class ProductService implements ProductServiceInterface
             'status' => 'sometimes|string|max:10',
             'point' => 'nullable|numeric',
             'description' => 'nullable|string',
-            // 'sale_on_web' => 'nullable|string|max:8',
         ]);
         return [$validator->passes(), $validator->errors()];
     }
@@ -91,7 +90,6 @@ class ProductService implements ProductServiceInterface
         $str = preg_replace("/(Ù|Ú|Ụ|Ủ|Ũ|Ư|Ừ|Ứ|Ự|Ử|Ữ)/", "U", $str);
         $str = preg_replace("/(Ỳ|Ý|Ỵ|Ỷ|Ỹ)/", "Y", $str);
         $str = preg_replace("/(Đ)/", "D", $str);
-        //$str = str_replace(" ", "-", str_replace("&*#39;","",$str));
         return $str;
     }
 
@@ -114,25 +112,11 @@ class ProductService implements ProductServiceInterface
             'sale_price',
             'status',
             'description',
-            // 'sale_on_web',
         ]);
 
-        // $dataLabels = $request->only([
-        //     'product_code',
-        //     'product_name',
-        //     'producer',
-        //     'product_type',
-        //     'size',
-        //     'material',
-        //     'color',
-        //     'surface',
-        //     'uses_for',
-        // ]);
-
-        // $dataLabels = implode($dataLabels);
-
+        $count =  Product::orderBy('id', 'DESC')->first()->id ?? 0;
         if (!$data['product_code']) {
-            $data['product_code'] = 'SP' . rand(1000, 9999);
+            $data['product_code'] = 'SP-000' . ($count + 1);
         }
         $data['status'] = 'active';
         DB::beginTransaction();
@@ -189,7 +173,6 @@ class ProductService implements ProductServiceInterface
             'sale_price',
             'status',
             'description',
-            // 'sale_on_web',
         ]);
 
         list($success, $errors) = $this->validateUpdateProductRequest($data, $id);
@@ -245,11 +228,14 @@ class ProductService implements ProductServiceInterface
         $products = Product::whereIn('id', $listId);
         $imagesId = $products->pluck('id');
         $images = Image::whereIn('id', $imagesId);
+        $cmtId = $products->pluck('id');
+        $comments = Comment::whereIn('id', $cmtId);
 
         \DB::beginTransaction();
 
         try {
             $images->delete();
+            $comments->delete();
             $products->delete();
         } catch (Exception  $e) {
             \DB::rollback();

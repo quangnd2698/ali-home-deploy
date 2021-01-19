@@ -27,7 +27,7 @@ class ImageTableSeeder extends Seeder
         while ($row < $maxCount) {
             array_push($insertDatas, [
                 'product_code' => $datas[$row][0],
-                'name' => $datas[$row][1],
+                'name' => $datas[$row][1] . '.jpg',
             ]);
 
             $row++;

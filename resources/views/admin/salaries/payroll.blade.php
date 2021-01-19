@@ -39,36 +39,20 @@
             <table class="checkbox-datatable table table-hover nowrap" style="width: 100%; background-color: #CCFFFF">
                 <thead style="background-color: #FFCC33">
                     <tr>
-                        <th>
-                            <div class="dt-checkbox">
-                                <input type="checkbox" name="select_all" value="1" id="example-select-all">
-                                <span class="dt-checkbox-label"></span>
-                            </div>
-                        </th>
                         <th>id</th>
                         <th>Nhân viên</th>
                         <th>Chức vụ</th>
                         <th>Lương cơ bản</th>
-                        <th>Action</th>
+                        {{-- <th>Action</th> --}}
                     </tr>
                 </thead>
                 <tbody class="table-striped">
                     @foreach($staffs as $key => $staff)
                     <tr>
-                        <td><div class="dt-checkbox"><input type="checkbox" name="checkbox-{{$staff->id}}" value=""><span class="dt-checkbox-label"></span></div></td>
                         <td>{{ $staff->id }}</td>
                         <td>{{ $staff->name }}</td>
                         <td>{{ $staff->position}}</td>
                         <td>{{ number_format($staff->basic_salary , 0, ',', ',') }}</td>
-                        {{-- <td>{{ $staff->point }}</td> --}}
-                        <td style="font-size: 16px" class="row dropdown">
-                            <div class="col-5"></div>
-                            <div class="col-7">
-                                <a data-toggle="modal" data-target="#confirmation-modal-{{ $staff->id }}"><i
-                                        class="dw dw-delete-3"></i>
-                                </a>
-                            </div>
-                        </td>
                     </tr>
                     @endforeach
                 </tbody>

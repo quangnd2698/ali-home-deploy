@@ -64,7 +64,7 @@
                         </td>
                         <td>{{ $invoice->invoice_code }}</td>
                         <td>{{ $invoice->customer_name }}</td>
-                        <td>{{ $invoice->total_cost }}</td>
+                        <td>{{ number_format($invoice->total_cost, 0, '.', ',') }}</td>
                         <td>{{ $invoice->created_at }}</td>
                         <td style="font-size: 16px; width: 100px;" class="row">
                             <div class="col-4"><a data-toggle="modal"  style="padding: 0px 5px 0px 5px" class="btn btn-primary"

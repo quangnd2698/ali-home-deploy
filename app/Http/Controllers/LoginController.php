@@ -32,7 +32,7 @@ class LoginController extends Controller
                 default;
             }
         }
-        return redirect()->route('login');
+        return redirect()->route('login')->with('thongbaoloi', 'Tài khoản hoặc mật khẩu không đúng');;
     }
 
     public function logout() {

@@ -114,7 +114,8 @@ class Product extends Model
     public function getTurnBuyAttribute()
     {
         $quantityProducts = InvoiceDetail::where('product_code', $this->product_code)->get();
-        return  $quantityProducts ? $quantityProducts->count() : 0;
+        $data = $quantityProducts->where('sales_channel', 'web');
+        return  $data ? $data->count() : 0;
     }
     
     public function getCountEvaluateAttribute()

@@ -27,6 +27,7 @@ class ProductController extends Controller
     public function index()
     {
         $products = Product::with('images')->orderBy('id')->get();
+        // dd($products->where('product_code', 'Sp-007')->first()->turn_buy / $products->where('product_code', 'Sp-007')->first()->count_view);
         return view('admin/products/index', ['products' => $products]);
     }
 

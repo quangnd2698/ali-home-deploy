@@ -242,7 +242,7 @@ body {
                     <label for="example-datetime-local-input" class="col-sm-12 col-md-2 col-form-label">Ngày Sinh</label>
                     <div class="col-sm-12 col-md-8">
                         <input class="form-control @if ($errors->has('date_of_birth')) {{'form-control-danger'}} @endif date-picker"
-                            name="date_of_birth" placeholder="Tháng/ngày/năm" type="text"
+                            name="date_of_birth" placeholder="tháng / ngày / năm" type="text"
                             @if(isset($user))
                                 value="{{$user->date_of_birth}}"
                             @endif>

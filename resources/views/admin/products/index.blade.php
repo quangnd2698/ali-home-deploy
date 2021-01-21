@@ -411,8 +411,9 @@
                                                     <div class="col-xl-12">
                                                         <div class="progress-box text-center">
                                                             <input type="text" class="knob dial5"
-                                                                value=" @if ($product->count_view)
-                                                                {{ 100 - ROUND(($product->turn_buy / ($product->count_view) ?? 0) * 100, 2) }}
+                                                                value=" 
+                                                                @if($product->turn_buy && $product->count_view)
+                                                                {{ ROUND($product->turn_buy / $product->count_view * 100, 2) }}
                                                                 @else
                                                                 {{0}}
                                                                 @endif

@@ -23,7 +23,8 @@ class InvoiceDetail extends Model
 
     protected $appends = [
         'product_type',
-        'type_code'
+        'type_code',
+        'sales_channel',
     ];
 
     public function getProductTypeAttribute()
@@ -34,6 +35,11 @@ class InvoiceDetail extends Model
     public function getTypeCodeAttribute()
     {
         return Product::where('product_code', $this->product_code)->first()->type_code ?? null;
+    }
+
+    public function getSalesChannelAttribute()
+    {
+        return Invoice::where('invoice_code', $this->invoice_code)->first()->sales_channel;
     }
 
 }

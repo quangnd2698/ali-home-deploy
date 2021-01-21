@@ -49,7 +49,7 @@ class OrderService implements OrderServiceInterface
         if (Auth::guard('web')->check()) {
             $carts = Cart::with('product')->where('user_id', Auth::guard('web')->id());
             try {
-                foreach ($carts as $key => $cart) {
+                foreach ($carts->get() as $key => $cart) {
                     $dataOrder['order_id'] = $order->id;
                     $dataOrder['product_code'] = $cart->product->product_code;
                     $dataOrder['product_name'] = $cart->product_name;
@@ -64,7 +64,6 @@ class OrderService implements OrderServiceInterface
                 \DB::rollBack();
                 return [false, $e->getMessage()];
             }
-
             $carts->delete();
         } else if(isset($_COOKIE['cart_product'])) {
             $data = explode(",", $_COOKIE['cart_product']);

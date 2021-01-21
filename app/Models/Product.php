@@ -65,7 +65,8 @@ class Product extends Model
         'point',
         'count_evaluate',
         'display_star',
-        'combo_product'
+        'combo_product',
+        'turn_buy'
     ];
 
     protected $hidden = ['labels'];
@@ -77,7 +78,7 @@ class Product extends Model
             ->whereMonth('created_at', $now['mon'])->pluck('quantity_product');
         $total = array_sum($quantityProduct->toArray());
         return $total
-            ? (($total*$this->sale_price) - ($total*$this->import_price))
+            ? ($total*$this->sale_price)
             : 0;
     }
 
@@ -90,7 +91,7 @@ class Product extends Model
             ->orWhereMonth('created_at', $now['mon']-2)->pluck('quantity_product');
         $total = array_sum($quantityProduct->toArray());
         return $total
-            ? (($total*$this->sale_price) - ($total*$this->import_price))
+            ? ($total*$this->sale_price)
             : 0;
     }
 
@@ -108,6 +109,12 @@ class Product extends Model
     {
         $quantityProducts = InvoiceDetail::where('product_code', $this->product_code)->pluck('quantity_product');
         return  $quantityProducts ? array_sum($quantityProducts->toArray()) : 0;
+    }
+
+    public function getTurnBuyAttribute()
+    {
+        $quantityProducts = InvoiceDetail::where('product_code', $this->product_code)->get();
+        return  $quantityProducts ? $quantityProducts->count() : 0;
     }
     
     public function getCountEvaluateAttribute()

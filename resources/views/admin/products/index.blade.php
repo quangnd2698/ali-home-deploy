@@ -381,7 +381,7 @@
                                                     <h6 class="mb-0">Lượt mua</h6>
                                                 </div>
                                                 <div class="col-sm-7 text-secondary">
-                                                    {{ number_format($product->count_buy, 0, ',', ' ') }}
+                                                    {{ number_format($product->turn_buy, 0, ',', ' ') }}
                                                 </div>
                                             </div>
                                         </div>
@@ -412,7 +412,7 @@
                                                         <div class="progress-box text-center">
                                                             <input type="text" class="knob dial5"
                                                                 value=" @if ($product->count_view)
-                                                                {{ 100 - ROUND(($product->count_buy / ($product->count_view) ?? 0) * 100, 2) }}
+                                                                {{ 100 - ROUND(($product->turn_buy / ($product->count_view) ?? 0) * 100, 2) }}
                                                                 @else
                                                                 {{0}}
                                                                 @endif

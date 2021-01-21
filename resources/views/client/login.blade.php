@@ -28,7 +28,7 @@
         /*author:starttemplate*/
 /*reference site : starttemplate.com*/
 body {
-  background-image:url('client/background.jpg');
+  /* background-image:url('client/background.jpg'); */
   background-position:center;
   background-size:cover;
   
@@ -100,14 +100,14 @@ h4 {
                     @csrf
                     <h4>Đăng nhập</h4>
                     </br>
-                    <input type="text" id="phone" name="phone" class="form-control input-sm chat-input" placeholder="phone"/>
+                    <input type="text" id="phone" name="phone" class="form-control input-sm chat-input" placeholder="Số điện thoại"/>
                     </br></br>
-                    <input type="password" id="userPassword" name="password" class="form-control input-sm chat-input" placeholder="password"/>
+                    <input type="password" id="userPassword" name="password" class="form-control input-sm chat-input" placeholder="Mật khẩu"/>
                     </br></br>
                     <div class="wrapper">
-                            <span class="group-btn">
-                                <button class="btn btn-danger btn-md">Login <i class="fa fa-sign-in"></i></button>
-                            </span>
+                        <span class="group-btn">
+                            <button class="btn btn-danger btn-md">Đăng nhập <i class="fa fa-sign-in"></i></button>
+                        </span>
                     </div>
                     @if(session('thongbaoloi'))
                     <div class="alert alert-danger">
@@ -115,7 +115,8 @@ h4 {
                     </div>
                     @endif
                 </form>
-                <div class="text-center">Chưa có tài khoản <a href="{{route('users.sign_up')}}">Đăng ký</a></div>
+                <div class="text-center">Chưa có tài khoản <a style="color: yellow" href="{{route('users.sign_up')}}">Đăng ký</a></div>
+                <div class="text-center"><a style="color: black" href="{{route('users.reset_pass')}}">Quên mật khẩu</a></div>
             </div>
         </div>
     {{-- </div> --}}

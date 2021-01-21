@@ -130,7 +130,7 @@
 <div class="container">
     <div class="row">
         <div class="col-md-12 col-sm-12 col-xs-12 image-section">
-            <img src="https://png.pngtree.com/thumb_back/fw800/back_pic/00/08/57/41562ad4a92b16a.jpg">
+            <img src="images/users/backgroud.jpg">
         </div>
         <div class="row user-left-part col-12">
             <div class="col-md-3 col-sm-3 col-xs-12 user-profil-part pull-left">

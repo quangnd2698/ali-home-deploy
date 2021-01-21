@@ -42,11 +42,11 @@
                                         <label class="custom-control-label" for="brand_all">Tất cả</label>
                                     </div>
                                 </div>
-                                @foreach ($brands as $brand)
+                                @foreach ($brands as $key => $brand)
                                 <div class="col-6">
                                     <div class="custom-control custom-checkbox mb-5">
-                                        <input type="checkbox" name="brand[{{$brand->brand_name}}]" value="{{$brand->brand_name}}" class="custom-control-input brand filter" id="brandCheck-{{$brand->id}}">
-                                        <label class="custom-control-label" for="brandCheck-{{$brand->id}}">{{$brand->brand_name}}</label>
+                                        <input type="checkbox" name="brand[{{$brand}}]" value="{{$brand}}" class="custom-control-input brand filter" id="brandCheck-{{$key}}">
+                                        <label class="custom-control-label" for="brandCheck-{{$key}}">{{$brand}}</label>
                                     </div>
                                 </div>
                                 @endforeach

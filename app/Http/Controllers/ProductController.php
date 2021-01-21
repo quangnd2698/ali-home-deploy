@@ -132,7 +132,7 @@ class ProductController extends Controller
     public function searchByName(Request $request)
     {
         $params = $request->value;
-        $data = Product::where('status', 'active')->search($params)->get()->toArray();
+        $data = Product::search($params)->get()->where('status', 'active')->toArray();
 
         return response()->json($data);
     }

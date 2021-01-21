@@ -22,18 +22,19 @@ class ClientPageController extends Controller
     {
         $this->clientPageService = $clientPageService;
     }
-    public function getHome() {
+    public function getHome()
+    {
         $newProducts  = Product::query()->orderBy('created_at', 'desc')->get()->take(10);
-        // $topBuyProducts  = Product::query()->orderBy('count_buy', 'desc')->get()->take(10);
         $saleProducts  = Product::query()->take(10)->get();
         return view('client/home', [
             'newProducts' => $newProducts,
-            // 'topBuyProducts' => $topBuyProducts,
             'saleProducts' => $saleProducts,
         ]);
     }
 
-    public function getProducts($params, Request $request) {
+    public function getProducts($params, Request $request) 
+    {
+        // dd($request->all());
         list($products, $brands, $filter) = $this->clientPageService->getProducts($params, $request->all());
         return view('client/product', [
             'products' => $products,
@@ -42,7 +43,8 @@ class ClientPageController extends Controller
         ]);
     }
 
-    public function getProductDetail($id) {
+    public function getProductDetail($id)
+    {
         $product  = Product::findOrFail($id);
         $products = Product::where('status', 'active')->get();
         $data['ceramic_count'] = $products->where('product_type', 'ceramic')->count() ?? 0;
@@ -61,14 +63,16 @@ class ClientPageController extends Controller
         ]);
     }
 
-    public function AddToCart(Request $request) {
+    public function AddToCart(Request $request)
+    {
         $params = $request->all();
         $params['user_id'] = Auth::guard('web')->id();
         Cart::create($params);
         return 'ok';
     }
 
-    public function updateCart(Request $request) {
+    public function updateCart(Request $request)
+    {
         $cart = Cart::findOrFail($request->id);
         $action = $request->action;
         if ($action == 'update') {
@@ -82,7 +86,8 @@ class ClientPageController extends Controller
         return 'ok';
     }
 
-    public function getCart() {
+    public function getCart()
+    {
 
         $params = null;
         $carts = [];
@@ -93,7 +98,6 @@ class ClientPageController extends Controller
             unset($data[0]);
             array_pop($data);
             $products = Product::whereIn('id', $data)->get();
-            // $productQuantity = $products->pluck('quantity');
             $params = $products->map(function ($product, $key) {
                 return [
                     'product_image' => $product->images()->first()->name,
@@ -192,8 +196,7 @@ class ClientPageController extends Controller
         
         $contactMail = new SendEmail($params);
         $sendEmailJob = new SendEmailJob($contactMail);
-        // Mail::to('alihomeht@gmail.com')->send($contactMail);
-        // dispatch($sendEmailJob);
+        dispatch($sendEmailJob);
         alert()->success('gửi', 'thành công');
         return redirect()->route('users.contact.index');
     }

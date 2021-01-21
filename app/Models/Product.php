@@ -107,7 +107,6 @@ class Product extends Model
     public function getCountBuyAttribute()
     {
         $quantityProducts = InvoiceDetail::where('product_code', $this->product_code)->pluck('quantity_product');
-        // return array_sum($quantityProducts->toArray());
         return  $quantityProducts ? array_sum($quantityProducts->toArray()) : 0;
     }
     

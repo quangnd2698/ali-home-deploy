@@ -3,7 +3,7 @@
     <link rel="stylesheet" href="client/carousel.css">
 @endsection
 @section('content')
-    <section style="background: url('client/img/photogrid.jpg') center center repeat; background-size: cover;"
+    <section style="background: url('images/users/backgroud3.jpg') center center repeat; background-size: cover;padding: 0px"
         class="bar background-white relative-positioned">
             <div class="home-carousel">
                 <div class="dark-mask mask-primary"></div>

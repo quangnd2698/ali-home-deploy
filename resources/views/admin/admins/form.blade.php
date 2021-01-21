@@ -150,7 +150,7 @@
     <label for="example-datetime-local-input" class="col-sm-12 col-md-2 col-form-label"></label>
     <div class="col-sm-12 col-md-3" id="div_avatar">
         <img id="img_avartar" class="img-thumbnail" style="width: 200px" 
-        @if(isset($admin)) {{$admin->image}}
+        @if(isset($admin) && $admin->image) {{$admin->image}}
             src = "images/admins/{{$admin->image}}"
         @else
             src = "images/admins/avatar.jpg"

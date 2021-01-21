@@ -22,7 +22,6 @@ class SendEmailJob implements ShouldQueue
      */
     public function __construct($details)
     {
-        // dd(1);
         $this->details = $details;
     }
 
@@ -33,9 +32,6 @@ class SendEmailJob implements ShouldQueue
      */
     public function handle()
     {
-        // dd(1);
-        // $email = new SendEmail($this->details);
-        // dd(1);
         Mail::to('alihomeht@gmail.com')->send($this->details);
     }
 }

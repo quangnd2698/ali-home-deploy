@@ -92,16 +92,17 @@
             <a href="{{route('client.home')}}" class="navbar-brand home"><img src="vendors/images/ali-logo.png" style="object-fit: cover; height: 50px;"
                     alt="Universal logo" class="d-none d-md-inline-block"><img src="vendors/images/ali-logo.png"
                     style="object-fit: cover; height: 50px;" alt="Universal logo" class="d-inline-block d-md-none"><span class="sr-only"></span></a>
-            <div id="search" class=" clearfix navbar-collapse collapse" style="margin-top: 15px; height: 55px;width: 400px;">
-                <div class="flex-center position-ref full-height col-10" style="width: 350px">
-                    <div class="content col-12" style="width: 350px">
-                        <form class=" col-12" role="search" style="width: 350px;">
-                            <input type="search" style="width: 350px;" name="q"
-                                class="form-control search-input col-12"
+            <div id="search" class=" clearfix navbar-collapse collapse row" style="margin-top: 0px; height: 55px;width: 450px;">
+                <div class="flex-center position-ref full-height col-10" style="width: 450px">
+                    <div class="content col-12" style="width: 450px">
+                        <form class=" col-12" role="search" style="width: 450px;" method="GET" action="{{route('client.products', 'all')}}" id="form_search">
+                            <input type="search" style="width: 400px;" name="query"
+                                class="form-control search-input "
                                 placeholder="Tìm kiếm theo tên, mã sản phẩm" autocomplete="off">
                         </form>
                     </div>
                 </div>
+                <button style="height: 45px" id="btn-sm-search" class="btn btn-secondary col-2" type="button"><i class="fa fa-search"></i></button>
             </div>
             <button type="button" data-toggle="collapse" data-target="#navigation"
                 class="navbar-toggler btn-template-outlined"><span class="sr-only">Toggle navigation</span><i

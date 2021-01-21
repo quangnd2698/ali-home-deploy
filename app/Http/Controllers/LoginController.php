@@ -5,6 +5,12 @@ namespace App\Http\Controllers;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 use App\Models\Admin;
+use Illuminate\Support\Str;
+use App\Mail\SendResetPassword;
+use App\Jobs\SendResetPasswordJob;
+use App\Models\User;
+use App\Jobs\SendEmailJob;
+// use Mail;
 
 class LoginController extends Controller
 {
@@ -61,6 +67,32 @@ class LoginController extends Controller
             return redirect()->route('client.home');
         }
         return view('client/login');
+    }
+
+    public function getResetPass()
+    {
+        return view('client/reset_pass');
+    }
+
+    public function resetPass(Request $request)
+    {
+        $phone = $request->phone;
+        $user = User::where('phone', $phone)->first();
+        if (!$user) {
+            return redirect()->route('users.reset_pass')->with('thongbaoloi', 'Số điện thoại không tồn tại');
+        }
+        $newPassword = Str::random(8);
+        $password = bcrypt($newPassword);
+        $user->password = $password;
+        $user->save();
+        $params['email'] = $user->email;
+        $params['password'] = $newPassword;
+        $resetMail = new SendResetPassword($params);
+        $sendResetJob = new SendResetPasswordJob($resetMail,  $params['email']);
+        dispatch($sendResetJob);
+        alert()->success('Reset mật khẩu thành công', 'Vào email để lấy mật khẩu mới');
+        return redirect()->route('users.login');
+
     }
 
 }

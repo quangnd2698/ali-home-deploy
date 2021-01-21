@@ -128,14 +128,16 @@
                                                     </button>
                                                 </div>
                                                 <div class="col-7" style="text-align: center">
-                                                    <h3 style="margin-top: 10px; margin-bottom: 5px">
-                                                        @if ($product->quantity > 0)
+                                                    <h4 style="margin-top: 10px; margin-bottom: 5px">
+                                                        @if ($product->status !== 'active')
+                                                        <p style="color: red">Ngừng kinh doanh</p>
+                                                        @elseif ($product->quantity > 0)
                                                             Tồn kho: {{$product->quantity}}
                                                         @else
                                                         <p style="color: red">HẾT HÀNG</p>
                                                         @endif
                                                         
-                                                    </h3>
+                                                    </h4>
                                                 </div>
                                             </div>
                                             

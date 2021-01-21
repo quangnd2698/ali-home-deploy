@@ -132,6 +132,10 @@
             },
         ]);
     });
+
+    $( "#btn-sm-search" ).click(function() {
+        $( "#form_search" ).submit();
+    });
     </script>
     @yield('script')
 </body>

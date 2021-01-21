@@ -69,6 +69,8 @@ Route::get('checkouts/success','ClientPageController@checkoutSuccess')->name('cl
 Route::post('users_sign_in', 'LoginController@userAuthenticate')->name('users.sign_in');
 Route::get('user_logout','LoginController@userlogout')->name('users.logout');
 Route::get('user_login','LoginController@userLogin')->name('users.login');
+Route::get('reset_password','LoginController@getResetPass')->name('users.reset_pass');
+Route::post('reset_password','LoginController@resetPass')->name('users.reset');
 Route::get('contact','ClientPageController@getMail')->name('users.contact.index');
 Route::post('contact', 'ClientPageController@storeMail')->name('users.contact');
 Route::get('profile/{id}','ClientPageController@getProfile')->name('users.profile');

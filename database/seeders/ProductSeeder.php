@@ -43,7 +43,8 @@ class ProductSeeder extends Seeder
                 'type_code' => $datas[$row][11],
                 'combo' => $datas[$row][12],
                 'status' => 'active',
-                'quantity' => 50,
+                'quantity' => 100,
+                'created_at' => now(),
             ]);
 
             $row++;

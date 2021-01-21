@@ -51,7 +51,11 @@
                     <tr>
                         {{-- <td style="font-size: 16px" ><div class="dt-checkbox"><input type="checkbox" name="checkbox-{{$user->id}}" value=""><span class="dt-checkbox-label"></span></div></td> --}}
                         <td style="font-size: 16px" >
-                            <img src="images/users/{{$user->image}}" style="width: 40px; height: 40px; margin-left: 25%" class="rounded-circle">
+                            <img  @if($user->avatar) {{$user->avatar}}
+                            src = "images/users/{{$user->avatar}}"
+                        @else
+                            src = "images/admins/avatar.jpg"
+                        @endif style="width: 40px; height: 40px; margin-left: 25%" class="rounded-circle">
                         </td>
                         <td style="font-size: 16px" style="font-size: 16px">{{ $user->email }}</td>
                         <td style="font-size: 16px">{{ $user->name}}</td>
@@ -254,7 +258,7 @@
                                                                 <h6 class="mb-0">Rank</h6>
                                                             </div>
                                                             <div class="col-sm-9 text-secondary">
-                                                                Ưu tú
+                                                                {{$user->rank}}
                                                             </div>
                                                         </div>
                                                         <hr>
@@ -318,7 +322,7 @@
         <div class="modal-dialog modal-dialog-centered" role="document">
             <div class="modal-content">
                 <div class="modal-body text-center font-18">
-                    <h4 class="padding-top-30 mb-30 weight-500">Are you sure you want to continue delete</h4>
+                    <h4 class="padding-top-30 mb-30 weight-500">Bạn có tiếp tục xóa</h4>
                     <div class="padding-bottom-30 row" style="max-width: 170px; margin: 0 auto;">
                         <div class="col-6">
                             <button type="button" class="btn btn-secondary border-radius-100 btn-block confirmation-btn" data-dismiss="modal"><i class="fa fa-times"></i></button>

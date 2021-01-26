@@ -68,7 +68,7 @@ class ProductService implements ProductServiceInterface
             'count_view' => 'nullable|numeric',
             'count_buy' => 'nullable|numeric',
             'number_error' => 'nullable|numeric',
-            'status' => 'sometimes|string|max:10',
+            'status' => 'sometimes|string|max:10', 
             'point' => 'nullable|numeric',
             'description' => 'nullable|string',
         ]);
